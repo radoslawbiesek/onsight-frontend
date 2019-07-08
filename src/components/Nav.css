@@ -1,0 +1,35 @@
+.main-nav {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+}
+
+.logo {
+    height: 40px;
+    margin: 0;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu__item {
+    text-decoration: none;
+    color: #000;
+    margin: 0 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 6.4px;
+    opacity: 0.5;
+}
+
+.menu__item:hover,
+.menu__item--active {
+    opacity: 1;
+}

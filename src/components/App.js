@@ -1,18 +1,20 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+
+import Navigation from './Nav';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div>
-        <Route path='/' component={Navigation}>
-          <IndexRoute component={Home} />
-          <Route path='/contact' component={Contact} />
-          <Route path='*' component={NotFound} />
-        </Route>
+    <Router>
+      <div className='container'>
+        <Navigation />
+        {/* <Route exact path='/' component={Home} />
+        <Route path='/contact' component={Contact} />
+        <Route path='/blog' component={Blog} />
+        <Route path='/cart' component={Cart} /> */}
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 
