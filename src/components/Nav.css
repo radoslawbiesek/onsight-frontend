@@ -27,9 +27,26 @@
     text-transform: uppercase;
     letter-spacing: 6.4px;
     opacity: 0.5;
+    position: relative;
 }
 
 .menu__item:hover,
 .menu__item--active {
     opacity: 1;
 }
+
+.items-in-cart {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    letter-spacing: 0;
+    border-radius: 50%;
+    border: 1px solid #000;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

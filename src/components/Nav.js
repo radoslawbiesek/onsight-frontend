@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './Nav.css';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../images/logo.png';
 import cart from '../images/backpack.png';
 
-function Nav() {
+function Nav(props) {
     return (
         <nav className='main-nav'>
             <div>
@@ -21,11 +22,20 @@ function Nav() {
                     <NavLink to={`/blog`} className='menu__item' activeClassName='menu__item--active'>Blog</NavLink>
                 </li>
                 <li>
-                    <NavLink to={`/cart`} className='menu__item' activeClassName='menu__item--active'><img className='logo' src={cart} alt='Cart' /></NavLink>
+                    <NavLink to={`/cart`} className='menu__item' activeClassName='menu__item--active'>
+                        <img className='logo' src={cart} alt='Cart' />
+                        <span className='items-in-cart'>{props.amount}</span>
+                    </NavLink>
                 </li>
             </ul>
         </nav>
     )
 }
 
-export default Nav;
+const mapStateToProps = (state) => {
+    return {
+        amount: state.totalAmount,
+    }
+}
+
+export default connect(mapStateToProps)(Nav);
