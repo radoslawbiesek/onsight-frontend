@@ -3,12 +3,15 @@ import './Product.css';
 
 function Product(props) {
     return (
-        <div className='product'>
-            <img src={props.img} alt={props.name}/>
-            <p>{props.name}</p>
-            <p>{props.desc}</p>
-            <p>${props.price}</p>
-            <button onClick={props.onClick}>Add to cart</button>
+        <div className='product__card'>
+            <div className='product__image'>
+                <img src={props.img} alt={props.name}/>
+            </div>
+            <div className="product__label">
+                <p className='product__name'>{props.name}</p>
+                <p className='product__price'>${props.price}</p>
+                <button class='product__add-button' onClick={props.onClick}>[  ] Add to cart</button>
+            </div>
         </div>    
     );
 }
