@@ -4,3 +4,8 @@
     /* align-items: center; */
     flex-wrap: wrap;
 }
+
+
+.filters-container {
+    width: 30%;
+}

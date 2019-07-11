@@ -1,0 +1,8 @@
+.products-container {
+    width: 70%;
+}
+
+.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
