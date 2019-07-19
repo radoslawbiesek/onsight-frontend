@@ -2,7 +2,7 @@ import React from 'react';
 import Hero from './Hero';
 import Filters from './Filters';
 import Products from './Products';
-import Newsletter from './Newsletter';
+
 import './Home.css';
 
 class Home extends React.Component {
@@ -17,7 +17,6 @@ class Home extends React.Component {
                 <Hero />
                 <Filters />
                 <Products />
-                <Newsletter />
             </div>
         )
     }

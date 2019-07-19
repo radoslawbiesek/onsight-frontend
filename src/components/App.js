@@ -5,6 +5,7 @@ import './App.css';
 import Navigation from './Nav';
 import Home from './Home';
 import Cart from './Cart';
+import Newsletter from './Newsletter';
 import Footer from './Footer';
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
           {/* <Route path='/contact' component={Contact} />
           <Route path='/blog' component={Blog} /> */}
           <Route path='/cart' component={Cart} />
+          <Newsletter />
           <Footer />
         </div>
       </Router>

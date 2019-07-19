@@ -23,21 +23,23 @@ class Newsletter extends React.Component {
     render() {
         return (
             <div className='newsletter'>
-                <form className='newsletter' onSubmit={this.handleSubmit}>
+                <form className='newsletter__form' onSubmit={this.handleSubmit}>
                     <label className='newsletter__label' for="email">
                         Get discount 35% off
                     </label>
-                    <input 
-                        className='newsletter__input' 
-                        type="email" 
-                        id="email" 
-                        placeholder='Enter your email...' 
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                    />
-                    <button className='newsletter__button'>
-                        Send
-                    </button> 
+                    <div className='newsletter__group'>
+                        <input 
+                            className='newsletter__input' 
+                            type="email" 
+                            id="email" 
+                            placeholder='Enter your email...' 
+                            value={this.state.email}
+                            onChange={this.handleChange}
+                        />
+                        <button className='newsletter__button'>
+                            Send
+                        </button>
+                    </div>
                 </form>  
             </div>
         );
