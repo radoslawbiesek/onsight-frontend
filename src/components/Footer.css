@@ -1,0 +1,38 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 115px;
+    padding: 0 115px;
+
+    color: #000000;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.9px;
+}
+
+
+.footer__text {
+    opacity: 0.5;
+}
+
+.footer__link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.footer__link:hover {
+    text-decoration: underline;
+}
+
+.footer__menu {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+}
+
+.footer__item {
+    margin: 0;
+    margin-left: 36px;
+}

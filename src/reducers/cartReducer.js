@@ -28,7 +28,7 @@ const cartReducer = (state = initialState, action) => {
                     totalPrice: state.totalPrice + itemToAdd.price,
                     totalAmount: state.totalAmount + 1,
                 };
-            }       
+            }    
     }
     return state;
 }
