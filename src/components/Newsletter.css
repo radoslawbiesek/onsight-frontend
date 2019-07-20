@@ -6,7 +6,7 @@
     color: #000;
     display: flex;
     align-items: center;
-    padding: 50px; 
+    padding: 55px; 
 }
 
 .newsletter__form {
@@ -55,4 +55,5 @@
 .newsletter__button:hover {
     cursor: pointer;
     background-color: #f5f5f5;
+    border: 3px solid #eeeeee;
 }
