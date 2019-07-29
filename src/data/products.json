@@ -4,55 +4,63 @@
         "name": "Lorem ipsum 1",
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111.99",
-        "img": "https://place-hold.it/300x300" 
+        "img": "https://place-hold.it/300x300",
+        "category": "Living"
     },
     {
         "id": "2",
         "name": "Lorem ipsum 2",
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111.00",
-        "img": "https://place-hold.it/300x300" 
+        "img": "https://place-hold.it/300x300",
+        "category": "Technics"
     },
     {
         "id": "3",
         "name": "Lorem ipsum 3",
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111.11",
-        "img": "https://place-hold.it/300x300" 
+        "img": "https://place-hold.it/300x300",
+        "category": "Dining"
     },
     {
         "id": "4",
         "name": "Lorem4",
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111.22",
-        "img": "https://place-hold.it/300x300" 
+        "img": "https://place-hold.it/300x300",
+        "category": "Accesories"
     },
     {
         "id": "5",
         "name": "Lorem5",
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111",
-        "img": "https://place-hold.it/300x300" 
+        "img": "https://place-hold.it/300x300",
+        "category": "Accesories"
     },
     {
         "id": "6",
         "name": "Lorem6",
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111",
-        "img": "https://place-hold.it/300x300" 
+        "img": "https://place-hold.it/300x300",
+        "category": "Accesories" 
     },
     {
         "id": "7",
         "name": "Lorem7",
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111",
-        "img": "https://place-hold.it/300x300" 
+        "img": "https://place-hold.it/300x300",
+        "category": "Furniture" 
     },
     {
         "id": "8",
         "name": "Lorem8",
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111",
-        "img": "https://place-hold.it/300x300" 
+        "img": "https://place-hold.it/300x300",
+        "category": "Accesories" 
     }
 ]

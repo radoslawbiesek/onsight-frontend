@@ -10,7 +10,7 @@ function Product(props) {
             <div className="product__label">
                 <p className='product__name'>{props.name}</p>
                 <p className='product__price'>${props.price}</p>
-                <button class='product__add-button' onClick={props.onClick}>[  ] Add to cart</button>
+                <button className='product__add-button' onClick={props.onClick}>[  ] Add to cart</button>
             </div>
         </div>    
     );

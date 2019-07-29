@@ -24,7 +24,7 @@ class Newsletter extends React.Component {
         return (
             <div className='newsletter'>
                 <form className='newsletter__form' onSubmit={this.handleSubmit}>
-                    <label className='newsletter__label' for="email">
+                    <label className='newsletter__label' htmlFor="email">
                         Get discount 35% off
                     </label>
                     <div className='newsletter__group'>
