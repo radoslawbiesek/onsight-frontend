@@ -4,8 +4,6 @@ import Filters from './Filters';
 import Products from './Products';
 import Categories from './Categories';
 
-import { Container, Row, Col } from 'reactstrap';
-
 class Home extends React.Component {
 
     handleClick = (id) => {
@@ -14,19 +12,19 @@ class Home extends React.Component {
 
     render() {
         return (
-            <Container>
-                <Row>
+            <div class="container">
+                <div className="row">
                     <Hero />
-                </Row>
-                <Row>
-                    <Col md='3'>
+                </div>
+                <div className="row">
+                    <div className="col col-md-3">
                         <Categories />
-                    </Col>
-                    <Col md='9'>
+                    </div>
+                    <div className="col col-md-9">
                         <Products />
-                    </Col>
-                </Row>
-            </Container>
+                    </div>
+                </div>
+            </div>
         )
     }
 }

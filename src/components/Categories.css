@@ -1,3 +1,8 @@
+.filters-container {
+    width: 33%;
+    max-width: 400px;
+}
+
 .filters__list {
     list-style-type: none;
     padding: 0;

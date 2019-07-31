@@ -26,11 +26,10 @@ class Products extends React.Component {
         });
 
         return (
-            <div className='products-container'>
-                <p className='products-sort'>Sort by: A-Z </p>
-                <p className='products-number'>Showing 1-12 of 24 results</p>
-                <div className='products-grid'>{itemsList}</div>
-                <p className='products-page'>01 02 03 04 05 -></p>
+            <div>
+                <div className='products-grid'>
+                    {itemsList}
+                </div>
             </div>    
         )
     }

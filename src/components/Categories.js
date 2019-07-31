@@ -26,12 +26,13 @@ class Categories extends React.Component {
             );
         }
 
-        return(<div className='filters-container'>
-            <p className='filters__title'>Categories</p>
-            <ul className='filters__list'>
-                {categoriesArray}
-            </ul>
-        </div>);
+        return(
+            <div>
+                <p className='filters__title'>Categories</p>
+                <ul className='filters__list'>
+                    {categoriesArray}
+                </ul>
+            </div>);
     }
 }
 
