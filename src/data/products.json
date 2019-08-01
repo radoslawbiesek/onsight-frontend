@@ -5,7 +5,10 @@
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111.99",
         "img": "https://place-hold.it/300x300",
-        "category": "Living"
+        "category": "Living",
+        "size": "small",
+        "brand": "Lorem ipsum 1",
+        "color": "grey"
     },
     {
         "id": "2",
@@ -13,7 +16,10 @@
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111.00",
         "img": "https://place-hold.it/300x300",
-        "category": "Technics"
+        "category": "Technics",
+        "size": "medium",
+        "brand": "Lorem ipsum 1",
+        "color": "white"
     },
     {
         "id": "3",
@@ -21,7 +27,10 @@
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111.11",
         "img": "https://place-hold.it/300x300",
-        "category": "Dining"
+        "category": "Lorem",
+        "size": "small",
+        "brand": "Lorem ipsum 2",
+        "color": "pink"
     },
     {
         "id": "4",
@@ -29,7 +38,10 @@
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111.22",
         "img": "https://place-hold.it/300x300",
-        "category": "Accesories"
+        "category": "Accesories",
+        "size": "large",
+        "brand": "Lorem ipsum 2",
+        "color": "blue"
     },
     {
         "id": "5",
@@ -37,7 +49,10 @@
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111",
         "img": "https://place-hold.it/300x300",
-        "category": "Accesories"
+        "category": "Accesories",
+        "size": "small",
+        "brand": "Lorem",
+        "color": "green"
     },
     {
         "id": "6",
@@ -45,7 +60,10 @@
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111",
         "img": "https://place-hold.it/300x300",
-        "category": "Accesories" 
+        "category": "Accesories",
+        "size": "large",
+        "brand": "Ipsum",
+        "color": "grey"
     },
     {
         "id": "7",
@@ -53,7 +71,10 @@
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111",
         "img": "https://place-hold.it/300x300",
-        "category": "Furniture" 
+        "category": "Furniture",
+        "size": "small",
+        "brand": "Ipsum",
+        "color": "blue"
     },
     {
         "id": "8",
@@ -61,6 +82,9 @@
         "desc": "Lorem ipsum dolor sit amet",
         "price": "111",
         "img": "https://place-hold.it/300x300",
-        "category": "Accesories" 
+        "category": "Accesories",
+        "size": "medium",
+        "brand": "Lorem ipsum 2",
+        "color": "grey"
     }
 ]

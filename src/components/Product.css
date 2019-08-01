@@ -1,3 +1,9 @@
+.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 .product__card {
     box-sizing: border-box;
     height: 500px;

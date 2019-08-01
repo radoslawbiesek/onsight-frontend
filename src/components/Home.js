@@ -1,8 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Hero from './Hero';
 import Filters from './Filters';
 import Products from './Products';
-import Categories from './Categories';
 
 class Home extends React.Component {
 
@@ -12,13 +12,15 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div class="container">
+            <div className="container">
                 <div className="row">
                     <Hero />
                 </div>
                 <div className="row">
                     <div className="col col-md-3">
-                        <Categories />
+                        <Filters 
+                            items={this.props.items}
+                        />
                     </div>
                     <div className="col col-md-9">
                         <Products />
@@ -29,4 +31,10 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        items: state.items
+    }
+}
+
+export default connect(mapStateToProps)(Home);
