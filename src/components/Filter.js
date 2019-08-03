@@ -15,7 +15,11 @@ function Filter(props) {
     let filtersList = [];
     for (let item in filtersCounter) {
         filtersList.push(
-            <li className='filters__item' key={props.type+filtersList.length}>
+            <li 
+                className='filters__item' 
+                key={props.type+filtersList.length}
+                onClick={props.onClick(item)}
+            >
                 {item}
                 <span className='filters__number'>{filtersCounter[item]}</span>
             </li>

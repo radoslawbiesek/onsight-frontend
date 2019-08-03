@@ -1,15 +1,28 @@
 import products from '../data/products.json';
 import { ADD_TO_CART } from '../actions/cartActions';
+import { ADD_FILTER } from '../actions/filterActions';
 
 const initialState = {
+    itemsAll: products,
     items: products,
     itemsInCart: [],
     totalPrice: 0,
     totalAmount: 0,
+    filters: ['red']
 }
 
-const cartReducer = (state = initialState, action) => {
+const reducers = (state = initialState, action) => {
     switch(action.type) {
+        case ADD_FILTER:
+            return {
+                ...state,
+                filters: [action.filter],
+                items: state.items.filter(item => {
+                    for (let key in item) {
+                        state.filters.includes(item[key]);
+                    }
+                })
+            }
         case ADD_TO_CART:
             const itemToAdd = state.items.find(item => item.id === action.id);
 
@@ -28,9 +41,11 @@ const cartReducer = (state = initialState, action) => {
                     totalPrice: state.totalPrice + itemToAdd.price,
                     totalAmount: state.totalAmount + 1,
                 };
-            }    
+            }
+
+             
     }
     return state;
 }
 
-export default cartReducer;
+export default reducers;

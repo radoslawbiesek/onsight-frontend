@@ -5,7 +5,8 @@ class Newsletter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: ''
+            email: '',
+            send: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,7 +18,7 @@ class Newsletter extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        alert('send');
+        this.setState({send: true});
     }
 
     render() {
@@ -25,7 +26,7 @@ class Newsletter extends React.Component {
             <div className='newsletter'>
                 <form className='newsletter__form' onSubmit={this.handleSubmit}>
                     <label className='newsletter__label' htmlFor="email">
-                        Get discount 35% off
+                        {(!this.state.send) ? 'Get discount 35% off' : 'Thank you for subscribing'}
                     </label>
                     <div className='newsletter__group'>
                         <input 
@@ -36,9 +37,7 @@ class Newsletter extends React.Component {
                             value={this.state.email}
                             onChange={this.handleChange}
                         />
-                        <button className='newsletter__button'>
-                            Send
-                        </button>
+                        <button className='newsletter__button'>Send</button>
                     </div>
                 </form>  
             </div>

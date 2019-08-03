@@ -1,7 +1,6 @@
 .products-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
 }
 
 .product__card {
@@ -69,4 +68,29 @@
 
 .product__card:hover .product__add-button {
     display: inline;
+}
+
+.products__showing {
+    opacity: 0.54;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 26px;
+    letter-spacing: 0.9px;
+    text-align: left;
+}
+
+.products__pages {
+    list-style-type: none;
+    padding: 0;
+    margin: 60px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.products__page {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 27px;
+    letter-spacing: 1.2px; 
+    margin: 0 10px;  
 }
