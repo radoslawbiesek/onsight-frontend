@@ -8,24 +8,30 @@ class Products extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(this.props.items);
         this.state = {
-            items: this.props.items,
+            // products list
+            items: this.props.items.sort((a, b) => a.name.localeCompare(b.name)),
             itemsLength: this.props.items.length,
 
             // sorting
-            sortBy: 'A-Z',
+            sortedBy: 'A-Z',
 
             // pagination 
             showing: 6,
             page: 1,
             pages: Math.ceil(this.props.items.length / 6),
-            prevPage: null,
-            nextPage: null,
             showingStart: 1,
             showingStop: 6,
-    
         }
+    }
+
+    handleClick = (id) => {
+        this.props.addToCart(id);
+    }
+
+    handleChange = (event) => {
+        this.setState({sortedBy: event.target.value});
+        this.sortBy(event.target.value);
     }
 
     updatePage(page) {
@@ -39,16 +45,23 @@ class Products extends React.Component {
         })
     }
 
-    componentDidMount() {
-        this.updatePage(1);
-    }
-
-    handleClick = (id) => {
-        this.props.addToCart(id);
-    }
-
-    handleChange = (event) => {
-        this.setState({sortBy: event.target.value});
+    sortBy(sortedBy) {
+        let items;    
+        switch (sortedBy) {
+            case 'Lowest Price':
+                items = this.state.items.sort((a, b) => a.price - b.price);
+                break;
+            case 'Highest Price':
+                items = this.state.items.sort((a, b) => b.price - a.price);
+                break;
+            case 'Z-A':
+                items = this.state.items.sort((a, b) => b.name.localeCompare(a.name));
+                break;
+            default: //A-Z
+                items = this.state.items.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+        }
+        this.setState({ items });
     }
 
     render() {
@@ -85,8 +98,8 @@ class Products extends React.Component {
                     <form className='products__sort-by'>
                         <label>
                             Sort by:
-                            <select onChange={this.handleChange}>
-                                <option selected value="A-Z">A-Z</option>
+                            <select defaultValue="A-Z" onChange={this.handleChange}>
+                                <option value="A-Z">A-Z</option>
                                 <option value="Z-A">Z-A</option>
                                 <option value="Lowest Price">Lowest Price</option>
                                 <option value="Highest Price">Highest Price</option>
