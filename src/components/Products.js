@@ -81,13 +81,14 @@ class Products extends React.Component {
 
         let pages = [];
         for (let i = 0; i < this.state.pages; i++) {
+            let pageNumber = i+1;
             pages.push(
                 <li 
-                    key={`page${i}`}
-                    onClick={()=>this.updatePage(i+1)}
-                    className='products__page'
+                    key={`page${pageNumber}`}
+                    onClick={()=>this.updatePage(pageNumber)}
+                    className={(this.state.page === pageNumber) ? 'products__page-link products__page-link--active' : 'products__page-link'}
                 >
-                    0{i+1}
+                    {`0${pageNumber}`}
                 </li>
             )
         };
@@ -111,11 +112,11 @@ class Products extends React.Component {
                 <div className='products-grid'>
                     {itemsList.slice(this.state.showingStart-1,this.state.showingStop)}
                 </div>
-                <ul className='products__pages'>
+                <ul className='products__pages-list'>
                     {pages}
                     <li 
                         onClick={()=>this.updatePage(this.state.page+1)}
-                        className='products__page'
+                        className='products__page-link'
                     >
                         &#8594;
                     </li>

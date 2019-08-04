@@ -119,5 +119,38 @@
         "size": "medium",
         "brand": "Lorem ipsum 2",
         "color": "grey"
+    },
+    {
+        "id": "12",
+        "name": "DLorem7",
+        "desc": "Lorem ipsum dolor sit amet",
+        "price": "123",
+        "img": "https://place-hold.it/300x300",
+        "category": "Accesories",
+        "size": "medium",
+        "brand": "Lorem ipsum 2",
+        "color": "grey"
+    },
+    {
+        "id": "13",
+        "name": "DLorem7",
+        "desc": "Lorem ipsum dolor sit amet",
+        "price": "444",
+        "img": "https://place-hold.it/300x300",
+        "category": "Accesories",
+        "size": "medium",
+        "brand": "Lorem ipsum 2",
+        "color": "grey"
+    },
+    {
+        "id": "14",
+        "name": "DLorem7",
+        "desc": "Lorem ipsum dolor sit amet",
+        "price": "555",
+        "img": "https://place-hold.it/300x300",
+        "category": "Accesories",
+        "size": "medium",
+        "brand": "Lorem ipsum 2",
+        "color": "grey"
     }
 ]

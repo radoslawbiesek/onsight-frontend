@@ -103,10 +103,9 @@
     text-align: left;
     display: inline;
     white-space: nowrap;
-
 }
 
-.products__pages {
+.products__pages-list {
     list-style-type: none;
     padding: 0;
     margin: 60px 0;
@@ -115,14 +114,15 @@
     align-items: center;
 }
 
-.products__page {
+.products__page-link {
     font-size: 24px;
     font-weight: 400;
     line-height: 27px;
     letter-spacing: 1.2px; 
-    margin: 0 10px;  
+    margin: 0 10px;
+    cursor: pointer;
 }
 
-.products__page--active {
+.products__page-link--active {
     font-weight: 700;
 }
