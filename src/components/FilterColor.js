@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './Filter.css';
+import { addFilter } from '../actions/filterActions';
 
 function FilterColor(props) {
 
@@ -28,6 +30,7 @@ function FilterColor(props) {
                 key={props.type+colors.indexOf(item)}
                 style={colorStyles}
                 alt={item}
+                onClick={()=>props.addFilter(props.type, item)}
             />
         )
     })
@@ -42,4 +45,13 @@ function FilterColor(props) {
     )
 }
 
-export default FilterColor;
+const mapStateToProps = (state) => {
+    return {
+        items: state.itemsFiltered
+    }
+}
+const mapDispatchToProps = {
+    addFilter
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FilterColor);

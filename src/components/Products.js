@@ -11,7 +11,7 @@ class Products extends React.Component {
         this.state = {
             // products list
             items: this.props.items.sort((a, b) => a.name.localeCompare(b.name)),
-            itemsLength: this.props.items.length,
+            itemsLength: this.props.itemsLength,
 
             // sorting
             sortedBy: 'A-Z',
@@ -19,7 +19,7 @@ class Products extends React.Component {
             // pagination 
             showing: 6,
             page: 1,
-            pages: Math.ceil(this.props.items.length / 6),
+            pages: Math.ceil(this.props.itemsLength / 6),
             showingStart: 1,
             showingStop: 6,
         }
@@ -128,7 +128,8 @@ class Products extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.items
+        items: state.itemsFiltered,
+        itemsLength: state.itemsFilteredLength
     }
 }
 

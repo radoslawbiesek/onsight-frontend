@@ -140,7 +140,8 @@
         "category": "Accesories",
         "size": "medium",
         "brand": "Lorem ipsum 2",
-        "color": "grey"
+        "color": "grey",
+        "discount": "20%"
     },
     {
         "id": "14",

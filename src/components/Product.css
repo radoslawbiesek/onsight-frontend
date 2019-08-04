@@ -78,6 +78,7 @@
 }
 .products__sort-by {
     font-size: 24px;
+    line-height: 54px;
     font-weight: 500;
     letter-spacing: 1.54px;
     display: inline; 
@@ -98,7 +99,7 @@
     opacity: 0.54;
     font-size: 18px;
     font-weight: 500;
-    line-height: 26px;
+    line-height: 54px;
     letter-spacing: 0.9px;
     text-align: left;
     display: inline;

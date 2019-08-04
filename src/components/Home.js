@@ -1,15 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Hero from './Hero';
 import Filters from './Filters';
 import Products from './Products';
 
 class Home extends React.Component {
-
-    handleClick = (id) => {
-        this.props.addToCart(id);
-    }
-
     render() {
         return (
             <div className="container">
@@ -18,9 +12,7 @@ class Home extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col col-md-3">
-                        <Filters 
-                            items={this.props.items}
-                        />
+                        <Filters />
                     </div>
                     <div className="col col-md-9">
                         <Products />
@@ -31,10 +23,4 @@ class Home extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        items: state.itemsAll
-    }
-}
-
-export default connect(mapStateToProps)(Home);
+export default Home;
