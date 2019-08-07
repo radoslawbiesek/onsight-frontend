@@ -1,12 +1,14 @@
 import products from '../data/products.json';
-import { RESET_FILTERS, REMOVE_FILTER, ADD_FILTER, GET_FILTERED_PRODUCTS } from '../actions/filterActions';
+import { RESET_FILTERS, REMOVE_FILTER, ADD_FILTER, FILTER_PRODUCTS } from '../actions/filterActions';
 import { ADD_TO_CART } from '../actions/cartActions';
+import { SELECT_PAGE } from '../actions/pageActions';
+import { SORT_BY } from '../actions/sortingActions';
 
 const initialState = {
     // products lists
     itemsAll: products,
-    itemsFiltered: products,
-    itemsFilteredLength: products.length,
+    itemsToDisplay: products.sort((a, b) => a.name.localeCompare(b.name)),
+    itemsToDisplayLength: products.length,
 
     // filters
     filters : {
@@ -16,6 +18,14 @@ const initialState = {
         brand: [],
     },
 
+    // sorting
+    sortingBy: 'A-Z',
+
+    // pagination
+    page: 1,
+    pages: Math.ceil(products.length / 6),
+    showing: 6,
+
     // cart
     itemsInCart: [],
     totalPrice: 0,
@@ -24,24 +34,28 @@ const initialState = {
 
 const reducers = (state = initialState, action) => {
     switch(action.type) {
-
-        case GET_FILTERED_PRODUCTS:
-            const itemsFiltered = state.itemsAll.filter(product => {
-                return Object.keys(state.filters).every(filterType => {
-                    if (!state.filters[filterType].length) { 
-                        return true;
-                    } else {
-                        return state.filters[filterType].includes(product[filterType]);
-                    }
-                })
-            });
-            console.log(itemsFiltered.length);
-            return { ...state, itemsFiltered: itemsFiltered, itemsFilteredLength: itemsFiltered.length }
+                
+        // sorting reducers:
+        case SORT_BY:
+            let sortedItems;
+            switch (action.sortingBy) {
+                case 'Lowest Price':
+                    sortedItems = state.itemsToDisplay.sort((a, b) => a.price - b.price);
+                    break;
+                case 'Highest Price':
+                    sortedItems = state.itemsToDisplay.sort((a, b) => b.price - a.price);
+                    break;
+                case 'Z-A':
+                    sortedItems = state.itemsToDisplay.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+                default: //A-Z
+                    sortedItems = state.itemsToDisplay.sort((a, b) => a.name.localeCompare(b.name));
+            }
+            return { ...state, itemsToDisplay : sortedItems, sortingBy: action.sortingBy }
 
         // filters reducers
         case RESET_FILTERS:
-            const resetFilters = { color: [], size: [], category: [], brand: [] };
-            return {...state, filters: resetFilters};
+            return {...state, filters: { color: [], size: [], category: [], brand: [] }};
 
         case REMOVE_FILTER:
             const reducedFilters = {...state.filters};
@@ -57,9 +71,25 @@ const reducers = (state = initialState, action) => {
                 return {...state, filters: extendedFilters};
             }
 
+        case FILTER_PRODUCTS:
+                const itemsToDisplay = state.itemsAll.filter(product => {
+                    return Object.keys(state.filters).every(filterType => {
+                        if (!state.filters[filterType].length) { 
+                            return true;
+                        } else {
+                            return state.filters[filterType].includes(product[filterType]);
+                        }
+                    })
+                });
+                return { ...state, itemsToDisplay: itemsToDisplay, itemsToDisplayLength: itemsToDisplay.length, pages: Math.ceil(itemsToDisplay.length / 6)};
+
+        // page reducers   
+        case SELECT_PAGE:
+            return (action.page > state.pages) ? state : { ...state, page: action.page}
+
         // cart reducers
         case ADD_TO_CART:
-            const itemToAdd = state.items.find(item => item.id === action.id);
+            const itemToAdd = state.itemsAll.find(item => item.id === action.id);
 
             if (state.itemsInCart.find(item => action.id === item.id)) {
                 itemToAdd.quantity++;
@@ -77,9 +107,8 @@ const reducers = (state = initialState, action) => {
                     totalAmount: state.totalAmount + 1,
                 };
             }
-
-             
     }
+
     return state;
 }
 

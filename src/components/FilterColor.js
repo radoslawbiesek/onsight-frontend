@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
+import { addFilter, filterProducts } from '../actions/filterActions';
+import { selectPage } from '../actions/pageActions';
+
 import './Filter.css';
-import { addFilter } from '../actions/filterActions';
 
 function FilterColor(props) {
 
@@ -13,6 +16,12 @@ function FilterColor(props) {
         'orange' : '#f39c12',
         'red' : '#e74c3c',
         'grey' : '#bdc3c7'
+    }
+
+    const handleClick = (type, item) => {
+        props.addFilter(props.type, item);
+        props.filterProducts();
+        props.selectPage(1);
     }
 
     let colors = [];
@@ -30,7 +39,7 @@ function FilterColor(props) {
                 key={props.type+colors.indexOf(item)}
                 style={colorStyles}
                 alt={item}
-                onClick={()=>props.addFilter(props.type, item)}
+                onClick={()=>handleClick(props.type, item)}
             />
         )
     })
@@ -47,11 +56,13 @@ function FilterColor(props) {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.itemsFiltered
+        items: state.itemsToDisplay
     }
 }
 const mapDispatchToProps = {
-    addFilter
+    addFilter,
+    filterProducts,
+    selectPage,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterColor);

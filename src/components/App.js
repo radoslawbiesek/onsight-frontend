@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 
-import './App.css';
 import Navigation from './Nav';
 import Home from './Home';
 import Cart from './Cart';
 import Newsletter from './Newsletter';
 import Footer from './Footer';
+
+import './App.css';
 
 class App extends React.Component {
   render() {

@@ -1,10 +1,20 @@
 import React from 'react';
-import './Filter.css';
-import { addFilter } from '../actions/filterActions';
 import { connect } from 'react-redux';
+
+import { addFilter, filterProducts } from '../actions/filterActions';
+import { selectPage } from '../actions/pageActions';
+
+import './Filter.css';
+
 
 function Filter(props) {
     
+    const handleClick = (item) => {
+        props.addFilter(props.type, item);
+        props.filterProducts();
+        props.selectPage(1);
+    }
+
     let filtersCounter = {};
     props.items.forEach(item => {
         if (filtersCounter[item[props.type]] !== undefined) {
@@ -20,7 +30,7 @@ function Filter(props) {
             <li 
                 className='filters__item' 
                 key={props.type+filtersList.length}
-                onClick={()=>props.addFilter(props.type, item)}
+                onClick={()=>handleClick(item)}
             >
                 {item}
                 <span className='filters__number'>{filtersCounter[item]}</span>
@@ -42,11 +52,13 @@ function Filter(props) {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.itemsFiltered
+        items: state.itemsToDisplay
     }
 }
 const mapDispatchToProps = {
-    addFilter
+    addFilter,
+    filterProducts,
+    selectPage
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

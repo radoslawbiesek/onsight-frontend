@@ -1,11 +1,11 @@
-export const GET_FILTERED_PRODUCTS = 'GET_FILTERED_PRODUCTS';
+export const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 export const ADD_FILTER = 'ADD_FILTER';
 export const RESET_FILTERS = 'RESET_FILTERS';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
 
-export const getFilteredProducts = () => { 
+export const filterProducts = () => { 
     return {
-        type: GET_FILTERED_PRODUCTS 
+        type: FILTER_PRODUCTS 
     }
 };
 
