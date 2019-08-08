@@ -2,6 +2,7 @@ export const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 export const ADD_FILTER = 'ADD_FILTER';
 export const RESET_FILTERS = 'RESET_FILTERS';
 export const REMOVE_FILTER = 'REMOVE_FILTER';
+export const SET_PRICES = 'SET_PRICES';
 
 export const filterProducts = () => { 
     return {
@@ -30,3 +31,11 @@ export const resetFilters = () => {
         type: RESET_FILTERS
     }
 };
+
+export const setPrice = (priceMin, priceMax) => {
+    return {
+        type: SET_PRICES,
+        priceMin,
+        priceMax,
+    }
+}

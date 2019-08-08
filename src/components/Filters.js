@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 
 import Filter from './Filter';
 import FilterColor from './FilterColor';
+import FilterPrice from './FilterPrice';
 
 import { resetFilters, removeFilter, filterProducts } from '../actions/filterActions';
 import { selectPage } from '../actions/pageActions';
+import { sortBy } from '../actions/sortingActions';
 
 const Filters = (props) => {
 
@@ -13,12 +15,14 @@ const Filters = (props) => {
         props.removeFilter(filterType, filterValue);
         props.filterProducts();
         props.selectPage(1);
+        props.sortBy(props.sortingBy);
     }
 
     const handleReset = () => {
         props.resetFilters();
         props.filterProducts();
         props.selectPage(1);
+        props.sortBy(props.sortingBy);
     }
 
     const renderActiveFilters = () => {
@@ -54,7 +58,12 @@ const Filters = (props) => {
                 type="category"
                 items={props.items}
             />
+            <hr/>
             <h1 className="filters__title">Filter by</h1>
+            <FilterPrice
+                title="Price"
+                items={props.items}
+            />
             <FilterColor 
                 title="Color"
                 type="color"
@@ -70,6 +79,7 @@ const Filters = (props) => {
                 type="brand"
                 items={props.items}
             />
+            <hr/>
             <div>
                 <p className='filters__title'>Popular Tags</p>
                 <p className='filters__item'>Climbing, Bouldering, Mountain, Equipment, On Sight</p>
@@ -81,7 +91,8 @@ const Filters = (props) => {
 const mapStateToProps = (state) => {
     return {
         items: state.itemsAll,
-        filters: state.filters
+        filters: state.filters,
+        sortingBy: state.sortingBy
     }
 };
 
@@ -89,7 +100,8 @@ const mapDispatchToProps = {
     resetFilters,
     removeFilter,
     filterProducts,
-    selectPage
+    selectPage,
+    sortBy,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);

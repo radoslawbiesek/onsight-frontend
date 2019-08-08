@@ -63,7 +63,7 @@ const Products = (props) => {
                         </select>
                     </label>
                 </form>
-                <p className='products__showing'>Showing {showingStart} - {showingStop} of {props.itemsLength} results</p>
+                <p className='products__showing'>Showing {Math.min(showingStart, props.itemsLength)} - {showingStop} of {props.itemsLength} results</p>
             </div>
             <div className='products-grid'>
                 {itemsList.slice(showingStart-1,showingStop)}

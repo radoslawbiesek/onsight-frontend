@@ -1,5 +1,5 @@
 import products from '../data/products.json';
-import { RESET_FILTERS, REMOVE_FILTER, ADD_FILTER, FILTER_PRODUCTS } from '../actions/filterActions';
+import { RESET_FILTERS, REMOVE_FILTER, ADD_FILTER, FILTER_PRODUCTS, SET_PRICES } from '../actions/filterActions';
 import { ADD_TO_CART } from '../actions/cartActions';
 import { SELECT_PAGE } from '../actions/pageActions';
 import { SORT_BY } from '../actions/sortingActions';
@@ -16,8 +16,11 @@ const initialState = {
         size: [],
         category: [],
         brand: [],
-    },
 
+    },
+    priceMin: 0,
+    priceMax: Infinity,
+    
     // sorting
     sortingBy: 'A-Z',
 
@@ -51,16 +54,29 @@ const reducers = (state = initialState, action) => {
                 default: //A-Z
                     sortedItems = state.itemsToDisplay.sort((a, b) => a.name.localeCompare(b.name));
             }
-            return { ...state, itemsToDisplay : sortedItems, sortingBy: action.sortingBy }
+            console.log(sortedItems);
+            return {
+                ...state, 
+                itemsToDisplay: sortedItems, 
+                sortingBy: action.sortingBy
+            }
 
         // filters reducers
         case RESET_FILTERS:
-            return {...state, filters: { color: [], size: [], category: [], brand: [] }};
+            return {
+                ...state, 
+                filters: { color: [], size: [], category: [], brand: [] },
+                priceMin: 0,
+                priceMax: Infinity,
+            };
 
         case REMOVE_FILTER:
             const reducedFilters = {...state.filters};
             reducedFilters[action.filterType] = state.filters[action.filterType].filter(item => item !== action.filterValue);
-            return {...state, filters: reducedFilters};
+            return {
+                ...state, 
+                filters: reducedFilters
+            };
 
         case ADD_FILTER:
             if (state.filters[action.filterType].includes(action.filterValue)) {
@@ -68,20 +84,40 @@ const reducers = (state = initialState, action) => {
             } else {
                 const extendedFilters = {...state.filters};
                 extendedFilters[action.filterType].push(action.filterValue);
-                return {...state, filters: extendedFilters};
+                return {
+                    ...state, 
+                    filters: extendedFilters
+                };
             }
 
         case FILTER_PRODUCTS:
-                const itemsToDisplay = state.itemsAll.filter(product => {
-                    return Object.keys(state.filters).every(filterType => {
-                        if (!state.filters[filterType].length) { 
-                            return true;
-                        } else {
-                            return state.filters[filterType].includes(product[filterType]);
-                        }
-                    })
+            let itemsFiltered = state.itemsAll.filter(product => {
+                return Object.keys(state.filters).every(filterType => {
+                    if (!state.filters[filterType].length) { 
+                        return true;
+                    } else {
+                        return state.filters[filterType].includes(product[filterType]);
+                    }
+                })
+            });
+            if (state.priceMin !== 0 || state.priceMax !== Infinity) {
+                itemsFiltered = itemsFiltered.filter(item => {
+                    return (parseFloat(item.price) > parseFloat(state.priceMin) && parseFloat(item.price) < parseFloat(state.priceMax));
                 });
-                return { ...state, itemsToDisplay: itemsToDisplay, itemsToDisplayLength: itemsToDisplay.length, pages: Math.ceil(itemsToDisplay.length / 6)};
+            }
+            return { 
+                ...state, 
+                itemsToDisplay: itemsFiltered, 
+                itemsToDisplayLength: itemsFiltered.length, 
+                pages: Math.ceil(itemsFiltered.length / 6)
+            };
+        
+        case SET_PRICES:
+            return {
+                ...state, 
+                priceMin: action.priceMin, 
+                priceMax: action.priceMax
+            };
 
         // page reducers   
         case SELECT_PAGE:
