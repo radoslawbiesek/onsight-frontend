@@ -1,6 +1,6 @@
 import products from '../data/products.json';
 import { RESET_FILTERS, REMOVE_FILTER, ADD_FILTER, FILTER_PRODUCTS, SET_PRICES } from '../actions/filterActions';
-import { ADD_TO_CART } from '../actions/cartActions';
+import { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_AMOUNT, DECREASE_AMOUNT } from '../actions/cartActions';
 import { SELECT_PAGE } from '../actions/pageActions';
 import { SORT_BY } from '../actions/sortingActions';
 
@@ -129,12 +129,11 @@ const reducers = (state = initialState, action) => {
         // CART REDUCERS
         case ADD_TO_CART:
             const itemToAdd = state.itemsAll.find(item => item.id === action.id);
-
             if (state.itemsInCart.find(item => action.id === item.id)) {
                 itemToAdd.quantity++;
                 return {
                     ...state,
-                    totalPrice: state.totalPrice + itemToAdd.price,
+                    totalPrice: state.totalPrice + parseFloat(itemToAdd.price),
                     totalAmount: state.totalAmount+ 1,
                 };    
             } else {
@@ -142,10 +141,43 @@ const reducers = (state = initialState, action) => {
                 return {
                     ...state,
                     itemsInCart: [...state.itemsInCart, itemToAdd],
-                    totalPrice: state.totalPrice + itemToAdd.price,
+                    totalPrice: state.totalPrice + parseFloat(itemToAdd.price),
                     totalAmount: state.totalAmount + 1,
                 };
             }
+
+
+        case DECREASE_AMOUNT:
+            const itemToDecrease = state.itemsAll.find(item => item.id === action.id);
+            if (itemToDecrease.quantity === 1) {
+                return { 
+                    ...state
+                };
+            } else {
+                itemToDecrease.quantity--;
+                return {
+                    ...state,
+                    totalPrice: state.totalPrice - parseFloat(itemToDecrease.price),
+                    totalAmount: state.totalAmount - 1,
+                };
+            }
+
+
+        case REMOVE_FROM_CART:
+            const { price, quantity } = state.itemsAll.find(item => item.id === action.id);
+            const itemsAfterRemove = state.itemsInCart.filter(item => item.id !== action.id);
+
+            return { 
+                ...state,
+                itemsInCart: itemsAfterRemove,
+                totalAmount: state.totalAmount - quantity,
+                totalPrice: state.totalPrice - quantity * price,
+            }
+
+        default:
+            return {...state};
+
+
     }
 
     return state;

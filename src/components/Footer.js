@@ -6,7 +6,7 @@ function Footer() {
     return (
         <footer className='footer'>
             <p className='footer__text'>
-                <a className='footer__link' href='https://github.com/radoslawbiesek' target='_blank'>© 2019 OnSight. All rights reserved.</a>
+                <a className='footer__link' rel="noopener noreferrer" href='https://github.com/radoslawbiesek' target='_blank'>© 2019 OnSight. All rights reserved.</a>
             </p>
             <ul className='footer__menu'>
                 <li className='footer__item'>
