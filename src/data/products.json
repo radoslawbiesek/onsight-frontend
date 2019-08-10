@@ -8,7 +8,7 @@
         "category": "Living",
         "size": "small",
         "brand": "Lorem ipsum 1",
-        "color": "grey"
+        "color": ["grey"]
     },
     {
         "id": "2",
@@ -19,7 +19,7 @@
         "category": "Technics",
         "size": "medium",
         "brand": "Lorem ipsum 1",
-        "color": "white"
+        "color": ["white"]
     },
     {
         "id": "3",
@@ -30,7 +30,7 @@
         "category": "Lorem",
         "size": "small",
         "brand": "Lorem ipsum 2",
-        "color": "red"
+        "color": ["red", "blue"]
     },
     {
         "id": "4",
@@ -41,7 +41,7 @@
         "category": "Accesories",
         "size": "large",
         "brand": "Lorem ipsum 2",
-        "color": "blue"
+        "color": ["blue", "green"]
     },
     {
         "id": "5",
@@ -52,7 +52,7 @@
         "category": "Accesories",
         "size": "small",
         "brand": "Lorem",
-        "color": "green"
+        "color": ["green", "blue"]
     },
     {
         "id": "6",
@@ -63,7 +63,7 @@
         "category": "Accesories",
         "size": "large",
         "brand": "Ipsum",
-        "color": "grey"
+        "color": ["grey", "yellow"]
     },
     {
         "id": "7",
@@ -74,7 +74,7 @@
         "category": "Furniture",
         "size": "small",
         "brand": "Ipsum",
-        "color": "green"
+        "color": ["green"]
     },
     {
         "id": "8",
@@ -85,7 +85,7 @@
         "category": "Accesories",
         "size": "medium",
         "brand": "Lorem ipsum 2",
-        "color": "grey"
+        "color": ["grey"]
     },
     {
         "id": "9",
@@ -96,7 +96,7 @@
         "category": "Accesories",
         "size": "medium",
         "brand": "Lorem ipsum 2",
-        "color": "grey"
+        "color": ["grey"]
     },
     {
         "id": "10",
@@ -107,7 +107,7 @@
         "category": "Accesories",
         "size": "medium",
         "brand": "Lorem ipsum 2",
-        "color": "grey"
+        "color": ["grey"]
     },
     {
         "id": "11",
@@ -118,7 +118,7 @@
         "category": "Accesories",
         "size": "medium",
         "brand": "Lorem ipsum 2",
-        "color": "grey"
+        "color": ["grey"]
     },
     {
         "id": "12",
@@ -129,7 +129,7 @@
         "category": "Accesories",
         "size": "medium",
         "brand": "Lorem ipsum 2",
-        "color": "grey"
+        "color": ["grey"]
     },
     {
         "id": "13",
@@ -140,8 +140,7 @@
         "category": "Accesories",
         "size": "medium",
         "brand": "Lorem ipsum 2",
-        "color": "grey",
-        "discount": "20%"
+        "color": ["grey"]
     },
     {
         "id": "14",
@@ -152,6 +151,6 @@
         "category": "Accesories",
         "size": "medium",
         "brand": "Lorem ipsum 2",
-        "color": "grey"
+        "color": ["grey"]
     }
 ]

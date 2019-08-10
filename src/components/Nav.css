@@ -33,6 +33,8 @@
 .menu__item:hover,
 .menu__item--active {
     opacity: 1;
+    text-decoration: none;
+    color: inherit;
 }
 
 .items-in-cart {

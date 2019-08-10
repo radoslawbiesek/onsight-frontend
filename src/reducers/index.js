@@ -38,7 +38,7 @@ const initialState = {
 const reducers = (state = initialState, action) => {
     switch(action.type) {
                 
-        // sorting reducers:
+        // SORTING REDUCERS
         case SORT_BY:
             let sortedItems;
             switch (action.sortingBy) {
@@ -54,14 +54,13 @@ const reducers = (state = initialState, action) => {
                 default: //A-Z
                     sortedItems = state.itemsToDisplay.sort((a, b) => a.name.localeCompare(b.name));
             }
-            console.log(sortedItems);
             return {
                 ...state, 
                 itemsToDisplay: sortedItems, 
                 sortingBy: action.sortingBy
             }
 
-        // filters reducers
+        // FILTERS REDUCERS
         case RESET_FILTERS:
             return {
                 ...state, 
@@ -91,15 +90,19 @@ const reducers = (state = initialState, action) => {
             }
 
         case FILTER_PRODUCTS:
+            // filter by categories, color, size, brand
             let itemsFiltered = state.itemsAll.filter(product => {
                 return Object.keys(state.filters).every(filterType => {
                     if (!state.filters[filterType].length) { 
                         return true;
+                    } else if (Array.isArray(product[filterType])) {
+                        return product[filterType].some(productProp => state.filters[filterType].includes(productProp));
                     } else {
                         return state.filters[filterType].includes(product[filterType]);
                     }
                 })
             });
+            // filter by price
             if (state.priceMin !== 0 || state.priceMax !== Infinity) {
                 itemsFiltered = itemsFiltered.filter(item => {
                     return (parseFloat(item.price) > parseFloat(state.priceMin) && parseFloat(item.price) < parseFloat(state.priceMax));
@@ -119,11 +122,11 @@ const reducers = (state = initialState, action) => {
                 priceMax: action.priceMax
             };
 
-        // page reducers   
+        // PAGE REDUCERS 
         case SELECT_PAGE:
             return (action.page > state.pages) ? state : { ...state, page: action.page}
 
-        // cart reducers
+        // CART REDUCERS
         case ADD_TO_CART:
             const itemToAdd = state.itemsAll.find(item => item.id === action.id);
 

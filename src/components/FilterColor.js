@@ -19,17 +19,17 @@ function FilterColor(props) {
     }
 
     const handleClick = (type, item) => {
-        props.addFilter(props.type, item);
+        props.addFilter(type, item);
         props.filterProducts();
         props.selectPage(1);
     }
 
     let colors = [];
     props.items.forEach(item => {
-        if(colors.indexOf(item[props.type]) === -1) {
-            colors.push(item[props.type])
-        }
-    })
+        item.color.forEach(color => {
+            if (colors.indexOf(color) === -1 ) colors.push(color);
+        });
+    });
     
     let colorsList = colors.map(item => {
         const colorStyles = (item === 'white') ? {background : 'white', border : '1px solid #bdc3c7'} : {background : colorPalette[item]};

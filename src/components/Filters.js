@@ -46,6 +46,7 @@ const Filters = (props) => {
                     {activeFilters}
                 </ul>
                 <a className='active-filters__reset' onClick={handleReset}>Reset filters</a>
+                <hr/>
             </div>
         )
     }
