@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { HashRouter, Route} from 'react-router-dom';
 
 import Navigation from './Nav';
 import Home from './Home';
@@ -12,18 +12,15 @@ import './App.css';
 class App extends React.Component {
   render() {
     return (
-      <Router>
+      <HashRouter basename="/">
         <div className='container'>
           <Navigation />
-          <Route exact path='/onsight/' component={Home} />
-
-          {/* <Route path='/contact' component={Contact} />
-          <Route path='/blog' component={Blog} /> */}
-          <Route path='onsight/cart' component={Cart} />
+          <Route exact path='/' component={Home} />
+          <Route path='/cart' component={Cart} />
           <Newsletter />
           <Footer />
         </div>
-      </Router>
+      </HashRouter>
     );
   }
 }
