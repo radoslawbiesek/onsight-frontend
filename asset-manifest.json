@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/onsight/static/css/main.df716785.chunk.css",
+    "main.js": "/onsight/static/js/main.2bef3daa.chunk.js",
+    "main.js.map": "/onsight/static/js/main.2bef3daa.chunk.js.map",
+    "runtime~main.js": "/onsight/static/js/runtime~main.6225bb4a.js",
+    "runtime~main.js.map": "/onsight/static/js/runtime~main.6225bb4a.js.map",
+    "static/js/2.864110ad.chunk.js": "/onsight/static/js/2.864110ad.chunk.js",
+    "static/js/2.864110ad.chunk.js.map": "/onsight/static/js/2.864110ad.chunk.js.map",
+    "index.html": "/onsight/index.html",
+    "precache-manifest.e236c125e8065f96632122b2d767ef78.js": "/onsight/precache-manifest.e236c125e8065f96632122b2d767ef78.js",
+    "service-worker.js": "/onsight/service-worker.js",
+    "static/css/main.df716785.chunk.css.map": "/onsight/static/css/main.df716785.chunk.css.map",
+    "static/media/backpack.png": "/onsight/static/media/backpack.fa6d6f0b.png",
+    "static/media/Hero.css": "/onsight/static/media/hero.db700c7f.jpeg"
+  }
+}
