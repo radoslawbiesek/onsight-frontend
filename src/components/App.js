@@ -15,11 +15,11 @@ class App extends React.Component {
       <Router>
         <div className='container'>
           <Navigation />
-          <Route exact path='/' component={Home} />
+          <Route exact path='/onsight/' component={Home} />
 
           {/* <Route path='/contact' component={Contact} />
           <Route path='/blog' component={Blog} /> */}
-          <Route path='/cart' component={Cart} />
+          <Route path='onsight/cart' component={Cart} />
           <Newsletter />
           <Footer />
         </div>
