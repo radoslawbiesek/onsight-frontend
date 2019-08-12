@@ -27,7 +27,7 @@ const ProductInCart = (props) => {
                 <p className='cart-table__price'>{'$'+parseFloat(props.item.price*props.item.quantity).toFixed(2)}</p>
             </td>
             <td className='cart-table__data'>
-                <button className='cart-table__button' onClick={props.onRemove}>x</button>
+                <button className='cart-table__button' onClick={props.onRemove}>X</button>
             </td>
         </tr>
     )

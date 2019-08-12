@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ProductInCart from './ProductInCart';
-import { removeFromCart, addToCart, decreaseAmount } from '../actions/cartActions';
+import CodeInput from './CodeInput';
+import { removeFromCart, addToCart, decreaseAmount, checkout } from '../actions/cartActions';
 
 import './Cart.css';
 
 const Cart = (props) => {
 
-    const renderTable = () => {
+    const renderCart = () => {
         let itemsToRender = [];
         props.itemsInCart.forEach((item, index) => {
             itemsToRender.push(
@@ -23,48 +24,81 @@ const Cart = (props) => {
         });
         return (
             <div className='cart'>
-                <table className='cart-table'>
-                    <thead>
-                        <tr className='cart-table__row cart-table__row--header'>
-                            <th className='cart-table__data cart-table__data--header'>Product</th>
-                            <th className='cart-table__data cart-table__data--header'></th>
-                            <th className='cart-table__data cart-table__data--header'>Price</th>
-                            <th className='cart-table__data cart-table__data--header'>Quantity</th>
-                            <th className='cart-table__data cart-table__data--header'>Total</th>
-                            <th className='cart-table__data cart-table__data--header'></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {itemsToRender}
-                        <tr className='cart-table__row cart-table__row--summary'>
-                            <td className='cart-table__data'></td>
-                            <td className='cart-table__data'></td>
-                            <td className='cart-table__data'></td>
-                            <td className='cart-table__data'></td>
-                            <td className='cart-table__data'>{'$'+props.totalPrice.toFixed(2)}</td>
-                            <td className='cart-table__data'></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div>
+                    <table className='cart-table'>
+                        <thead>
+                            <tr className='cart-table__row cart-table__row--header'>
+                                <th className='cart-table__data cart-table__data--header'>Product</th>
+                                <th className='cart-table__data cart-table__data--header'></th>
+                                <th className='cart-table__data cart-table__data--header'></th>
+                                <th className='cart-table__data cart-table__data--header'>Quantity</th>
+                                <th className='cart-table__data cart-table__data--header'>Total</th>
+                                <th className='cart-table__data cart-table__data--header'></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {itemsToRender}
+                        </tbody>
+                    </table>
+                    <CodeInput />
+                </div>
+                <div className='summary'>
+                    <h2 className='summary__title'>Summary</h2>
+                    <hr/>
+                    <div className='summary__row'>
+                        <span>Products: </span>
+                        <span>{'$'+props.productsTotalPrice.toFixed(2)}</span>
+                    </div>
+                    {props.discount ? 
+                    <div className="summary__row">
+                        <span>Discount: </span>
+                        <span>{'-$'+(props.productsTotalPrice*props.discount).toFixed(2)}</span>
+                    </div>
+                    : ''}
+                    <div className='summary__row'>
+                        <span>Shipping: </span>
+                        {props.freeShipping ? 
+                            <span><s>${props.shippingCost.toFixed(2)}</s> $0.00</span>
+                            : 
+                            <span>${props.shippingCost.toFixed(2)}</span>
+                        }
+                    </div>
+                    <hr/>
+                    <div className='summary__row'>
+                        <span>Total: </span>
+                        <span>${(props.productsTotalPrice * (1 - props.discount) + (!props.freeShipping ? props.shippingCost : 0)).toFixed(2)}</span>
+                    </div>
+                    <button 
+                        className='summary__checkout'
+                        onClick={props.checkout}
+                    >
+                        Continue to checkout
+                    </button>
+                </div>
             </div>
+
         );
     }
 
 
     return (
-        <div className='cart'>
+        <div>
             <h1 className='cart__title'>YOUR CART</h1>
-            {props.itemsInCart.length ? renderTable() : <p className='cart__empty'>You have nothing in your cart.</p>}
+            {props.itemsInCart.length ? renderCart() : <p className='cart__empty'>Your shopping cart is empty.</p>}
         </div>
     )
 }
 
 
 
-const mapStateToProps = (state) => {
+const mappropsToProps = (props) => {
     return {
-        itemsInCart: state.itemsInCart,
-        totalPrice: state.totalPrice,
+        itemsInCart: props.itemsInCart,
+        productsTotalPrice: props.productsTotalPrice,
+        total: props.total,
+        freeShipping: props.freeShipping,
+        discount: props.discount,
+        shippingCost: props.shippingCost,
     }
 }
 
@@ -72,6 +106,7 @@ const mapDispatchToProps = {
     removeFromCart,
     addToCart,
     decreaseAmount,
+    checkout,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mappropsToProps, mapDispatchToProps)(Cart);

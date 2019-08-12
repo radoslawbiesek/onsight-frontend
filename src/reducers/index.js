@@ -1,6 +1,8 @@
 import products from '../data/products.json';
+import codes from '../data/codes.json';
+
 import { RESET_FILTERS, REMOVE_FILTER, ADD_FILTER, FILTER_PRODUCTS, SET_PRICES } from '../actions/filterActions';
-import { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_AMOUNT, DECREASE_AMOUNT } from '../actions/cartActions';
+import { ADD_TO_CART, REMOVE_FROM_CART, DECREASE_AMOUNT, USE_DISCOUNT_CODE, CHECKOUT } from '../actions/cartActions';
 import { SELECT_PAGE } from '../actions/pageActions';
 import { SORT_BY } from '../actions/sortingActions';
 
@@ -31,8 +33,17 @@ const initialState = {
 
     // cart
     itemsInCart: [],
-    totalPrice: 0,
+    
     totalAmount: 0,
+    productsTotalPrice: 0,
+    discount: 0, // 35% discount = 0.35 etc.
+    freeShipping: false,
+
+    validCodes: codes,
+
+    freeShippingFrom: 250,
+    shippingCost: 8.99,
+
 }
 
 const reducers = (state = initialState, action) => {
@@ -130,22 +141,23 @@ const reducers = (state = initialState, action) => {
         case ADD_TO_CART:
             const itemToAdd = state.itemsAll.find(item => item.id === action.id);
             if (state.itemsInCart.find(item => action.id === item.id)) {
-                itemToAdd.quantity++;
+                itemToAdd.quantity += action.quantity;
                 return {
                     ...state,
-                    totalPrice: state.totalPrice + parseFloat(itemToAdd.price),
-                    totalAmount: state.totalAmount+ 1,
+                    productsTotalPrice: state.productsTotalPrice + parseFloat(itemToAdd.price),
+                    totalAmount: state.totalAmount + 1,
+                    freeShipping: (state.productsTotalPrice + parseFloat(itemToAdd.price)) > state.freeShippingFrom,
                 };    
             } else {
                 itemToAdd.quantity = 1;
                 return {
                     ...state,
                     itemsInCart: [...state.itemsInCart, itemToAdd],
-                    totalPrice: state.totalPrice + parseFloat(itemToAdd.price),
+                    productsTotalPrice: state.productsTotalPrice + parseFloat(itemToAdd.price),
                     totalAmount: state.totalAmount + 1,
+                    freeShipping: (state.productsTotalPrice + parseFloat(itemToAdd.price)) > state.freeShippingFrom,
                 };
             }
-
 
         case DECREASE_AMOUNT:
             const itemToDecrease = state.itemsAll.find(item => item.id === action.id);
@@ -157,11 +169,11 @@ const reducers = (state = initialState, action) => {
                 itemToDecrease.quantity--;
                 return {
                     ...state,
-                    totalPrice: state.totalPrice - parseFloat(itemToDecrease.price),
+                    productsTotalPrice: state.productsTotalPrice - parseFloat(itemToDecrease.price),
                     totalAmount: state.totalAmount - 1,
+                    freeShipping: (state.productsTotalPrice - parseFloat(itemToDecrease.price)) > state.freeShippingFrom,
                 };
             }
-
 
         case REMOVE_FROM_CART:
             const { price, quantity } = state.itemsAll.find(item => item.id === action.id);
@@ -171,16 +183,35 @@ const reducers = (state = initialState, action) => {
                 ...state,
                 itemsInCart: itemsAfterRemove,
                 totalAmount: state.totalAmount - quantity,
-                totalPrice: state.totalPrice - quantity * price,
+                productsTotalPrice: state.productsTotalPrice - quantity * price,
+                freeShipping: (state.productsTotalPrice - quantity * price) > state.freeShippingFrom,
+            }
+        
+        case USE_DISCOUNT_CODE:
+            if (Object.keys(state.validCodes).includes(action.code)) {
+                return {
+                    ...state,
+                    discount: parseFloat(state.validCodes[action.code]),
+                };
+            } else {
+                return { 
+                    ...state,
+                    discount: 0,
+                }
+            }
+        
+        case CHECKOUT:
+            const totalPrice = state.productsTotalPrice * (1 - state.discount) + (state.freeShipping ? 0 : state.shippinCost ); 
+            return {
+                ...state,
+                totalPrice
             }
 
         default:
-            return {...state};
-
-
+            return {
+                ...state
+            };
     }
-
-    return state;
 }
 
 export default reducers;
