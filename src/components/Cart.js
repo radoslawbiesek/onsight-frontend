@@ -74,6 +74,11 @@ const Cart = (props) => {
                     >
                         Continue to checkout
                     </button>
+                    {props.productsTotalPrice > props.freeShippingFrom ?
+                    <p className='summary__info'>You received free shipping!</p>
+                    :
+                    <p className='summary__info'>Free shipping from ${props.freeShippingFrom}.</p>
+                    }
                 </div>
             </div>
 
@@ -91,14 +96,15 @@ const Cart = (props) => {
 
 
 
-const mappropsToProps = (props) => {
+const mapStateToProps = (state) => {
     return {
-        itemsInCart: props.itemsInCart,
-        productsTotalPrice: props.productsTotalPrice,
-        total: props.total,
-        freeShipping: props.freeShipping,
-        discount: props.discount,
-        shippingCost: props.shippingCost,
+        itemsInCart: state.itemsInCart,
+        productsTotalPrice: state.productsTotalPrice,
+        total: state.total,
+        freeShipping: state.freeShipping,
+        discount: state.discount,
+        shippingCost: state.shippingCost,
+        freeShippingFrom: state.freeShippingFrom
     }
 }
 
@@ -109,4 +115,4 @@ const mapDispatchToProps = {
     checkout,
 }
 
-export default connect(mappropsToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

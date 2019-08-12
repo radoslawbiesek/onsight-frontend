@@ -8,7 +8,8 @@
     box-sizing: border-box;
     height: 500px;
     width: 380px;
-    background-color: #f5f5f5;
+    background-color: transparent;
+    border: 2px solid #f5f5f5;
     margin: 10px;
     padding: 30px;
     display: flex;
@@ -17,12 +18,21 @@
     justify-content: space-between
 }
 
+.product__card:hover {
+    transform: scale(1.01);
+}
+
 .product__image {
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.product__image img {
+    max-height: 300px;
+    max-width: 300px;
 }
 
 .product__label {
@@ -34,19 +44,25 @@
     align-items: flex-end;
 }
 
-.product__name {
+.product__name,
+.product__brand {
     flex-basis: 100%;
 }
 
 .product__name,
 .product__price,
-.product__add-button {
+.product__add-button,
+.product__brand {
     margin: 0;
     padding: 0;
     font-size: 18px;
     line-height: 32px;
     font-weight: 500;
     letter-spacing: 0.9px;
+}
+
+.product__brand {
+    font-weight: inherit;
 }
 
 .product__price {

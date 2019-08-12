@@ -22,11 +22,7 @@ const Products = (props) => {
     let itemsList = props.items.map(item => {
         return (
             <Product
-                key = {item.id}
-                img = {item.img}
-                name = {item.name}
-                desc = {item.desc}
-                price = {item.price}
+                item={item}
                 onClick = {()=>{handleClick(item.id)}}
             />
         )

@@ -41,7 +41,7 @@ const initialState = {
 
     validCodes: codes,
 
-    freeShippingFrom: 250,
+    freeShippingFrom: 100,
     shippingCost: 8.99,
 
 }

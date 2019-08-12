@@ -32,7 +32,7 @@ function FilterColor(props) {
     });
     
     let colorsList = colors.map(item => {
-        const colorStyles = (item === 'white') ? {background : 'white', border : '1px solid #bdc3c7'} : {background : colorPalette[item]};
+        const colorStyles = (item === 'white') ? {background : 'white', border : '1px solid #bdc3c7'} : {background : colorPalette[item] ? colorPalette[item] : item};
         return (
             <li
                 className="filters__color"
