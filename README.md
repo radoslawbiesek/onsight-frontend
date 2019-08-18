@@ -8,11 +8,10 @@ Features:
 * add product to cart, remove it from cart, change quantity directly from cart view
 * use the discount code received after 'subscribing' newsletter
 * the whole state is centralize in redux state container
+* product page with item description and quantity of product to buy (added 2019/08/18)
 
 Future development:
-* product page with item description and quantity of product to buy
 * responsive version for mobile 
-* improve css (icons etc.)
 * add slider
 * further future = backend (REST API + db)
 
