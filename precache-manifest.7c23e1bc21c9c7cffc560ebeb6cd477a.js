@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "77ebac17e9770bd8990170de7abfd199",
+    "revision": "dead1cfaa0f2b6cbdc028a03b8284a3f",
     "url": "/onsight/index.html"
   },
   {
-    "revision": "cb2dd7492f19ccbf559a",
+    "revision": "32715a71dca4ee66ef1c",
     "url": "/onsight/static/css/main.986c5366.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/onsight/static/js/2.bbc40a23.chunk.js"
   },
   {
-    "revision": "cb2dd7492f19ccbf559a",
-    "url": "/onsight/static/js/main.d56125ef.chunk.js"
+    "revision": "32715a71dca4ee66ef1c",
+    "url": "/onsight/static/js/main.ee5128d7.chunk.js"
   },
   {
     "revision": "c0eec5cc27a1e0fbeda9",
