@@ -23,6 +23,7 @@ const Products = (props) => {
         return (
             <Product
                 item={item}
+                key={item.id}
                 onClick = {()=>{handleClick(item.id)}}
             />
         )

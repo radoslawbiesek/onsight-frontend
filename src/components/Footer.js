@@ -13,13 +13,13 @@ function Footer() {
                     <NavLink className='footer__link' exact to={`/`}>Shop</NavLink>
                 </li>
                 <li className='footer__item'>
-                    <NavLink className='footer__link' exact to={`/faq`}>FAQ</NavLink>
+                    <NavLink className='footer__link'>FAQ</NavLink>
                 </li>
                 <li className='footer__item'>
-                    <NavLink className='footer__link' to={`/contact`}>Contact</NavLink>
+                    <NavLink className='footer__link'>Contact</NavLink>
                 </li>
                 <li className='footer__item'>
-                    <NavLink className='footer__link' to={`/blog`}>Blog</NavLink>
+                    <NavLink className='footer__link'>Blog</NavLink>
                 </li>
             </ul>
         </footer>

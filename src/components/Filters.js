@@ -83,7 +83,7 @@ const Filters = (props) => {
             <hr/>
             <div>
                 <p className='filters__title'>Popular Tags</p>
-                <p className='filters__item'>Climbing, Bouldering, Mountain, Equipment, On Sight</p>
+                <p className='tags'>Climbing, Bouldering, Mountain, Equipment, On Sight</p>
             </div>
         </div>
     )

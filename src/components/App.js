@@ -6,8 +6,7 @@ import Home from './Home';
 import Cart from './Cart';
 import Newsletter from './Newsletter';
 import Footer from './Footer';
-
-import './App.css';
+import ProductPage from './ProductPage';
 
 class App extends React.Component {
   render() {
@@ -17,6 +16,7 @@ class App extends React.Component {
           <Navigation />
           <Route exact path='/' component={Home} />
           <Route path='/cart' component={Cart} />
+          <Route path='/product/:id' component={ProductPage}/>
           <Newsletter />
           <Footer />
         </div>

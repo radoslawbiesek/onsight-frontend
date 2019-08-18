@@ -16,14 +16,14 @@ function Nav(props) {
                     <NavLink exact to={`/`} className='menu__item' activeClassName='menu__item--active'>Home</NavLink>
                 </li>
                 <li>
-                    <NavLink to={`/contact`} className='menu__item' activeClassName='menu__item--active'>Contact</NavLink>
+                    <NavLink className='menu__item' activeClassName='menu__item--active'>Contact</NavLink>
                 </li>
                 <li>
-                    <NavLink to={`/blog`} className='menu__item' activeClassName='menu__item--active'>Blog</NavLink>
+                    <NavLink className='menu__item' activeClassName='menu__item--active'>Blog</NavLink>
                 </li>
                 <li>
                     <NavLink to={`/cart`} className='menu__item' activeClassName='menu__item--active'>
-                        <img className='logo' src={cart} alt='Cart' />
+                        <img className='menu__backpack' src={cart} alt='Cart' />
                         <span className='items-in-cart'>{props.amount}</span>
                     </NavLink>
                 </li>

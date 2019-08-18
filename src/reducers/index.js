@@ -3,7 +3,7 @@ import codes from '../data/codes.json';
 
 import { RESET_FILTERS, REMOVE_FILTER, ADD_FILTER, FILTER_PRODUCTS, SET_PRICES } from '../actions/filterActions';
 import { ADD_TO_CART, REMOVE_FROM_CART, DECREASE_AMOUNT, USE_DISCOUNT_CODE, CHECKOUT } from '../actions/cartActions';
-import { SELECT_PAGE } from '../actions/pageActions';
+import { SELECT_PAGE, GET_PRODUCT } from '../actions/pageActions';
 import { SORT_BY } from '../actions/sortingActions';
 
 const initialState = {
@@ -18,7 +18,6 @@ const initialState = {
         size: [],
         category: [],
         brand: [],
-
     },
     priceMin: 0,
     priceMax: Infinity,
@@ -30,6 +29,8 @@ const initialState = {
     page: 1,
     pages: Math.ceil(products.length / 6),
     showing: 6,
+
+    selectedProduct: {},
 
     // cart
     itemsInCart: [],
@@ -81,7 +82,7 @@ const reducers = (state = initialState, action) => {
             };
 
         case REMOVE_FILTER:
-            const reducedFilters = {...state.filters};
+            const reducedFilters = { ...state.filters };
             reducedFilters[action.filterType] = state.filters[action.filterType].filter(item => item !== action.filterValue);
             return {
                 ...state, 
@@ -92,7 +93,7 @@ const reducers = (state = initialState, action) => {
             if (state.filters[action.filterType].includes(action.filterValue)) {
                 return state;
             } else {
-                const extendedFilters = {...state.filters};
+                const extendedFilters = { ...state.filters };
                 extendedFilters[action.filterType].push(action.filterValue);
                 return {
                     ...state, 
@@ -135,27 +136,37 @@ const reducers = (state = initialState, action) => {
 
         // PAGE REDUCERS 
         case SELECT_PAGE:
-            return (action.page > state.pages) ? state : { ...state, page: action.page}
+            return (action.page > state.pages) ? state : { ...state, page: action.page }
+
+        case GET_PRODUCT: 
+            const selectedProduct = state.itemsAll.find(item => item.id === action.id);
+            return { 
+                ...state, 
+                selectedProduct 
+            };
 
         // CART REDUCERS
         case ADD_TO_CART:
             const itemToAdd = state.itemsAll.find(item => item.id === action.id);
+            const priceToAdd = parseFloat(itemToAdd.price);
+            const quantityToAdd = parseInt(action.quantity);
+
             if (state.itemsInCart.find(item => action.id === item.id)) {
-                itemToAdd.quantity += action.quantity;
+                itemToAdd.quantity += quantityToAdd;
                 return {
                     ...state,
-                    productsTotalPrice: state.productsTotalPrice + parseFloat(itemToAdd.price),
-                    totalAmount: state.totalAmount + 1,
-                    freeShipping: (state.productsTotalPrice + parseFloat(itemToAdd.price)) > state.freeShippingFrom,
+                    productsTotalPrice: state.productsTotalPrice + quantityToAdd*priceToAdd,
+                    totalAmount: state.totalAmount + quantityToAdd,
+                    freeShipping: (state.productsTotalPrice + priceToAdd) > state.freeShippingFrom,
                 };    
             } else {
-                itemToAdd.quantity = 1;
+                itemToAdd.quantity = quantityToAdd;
                 return {
                     ...state,
                     itemsInCart: [...state.itemsInCart, itemToAdd],
-                    productsTotalPrice: state.productsTotalPrice + parseFloat(itemToAdd.price),
-                    totalAmount: state.totalAmount + 1,
-                    freeShipping: (state.productsTotalPrice + parseFloat(itemToAdd.price)) > state.freeShippingFrom,
+                    productsTotalPrice: state.productsTotalPrice + priceToAdd,
+                    totalAmount: state.totalAmount + quantityToAdd,
+                    freeShipping: (state.productsTotalPrice + priceToAdd) > state.freeShippingFrom,
                 };
             }
 

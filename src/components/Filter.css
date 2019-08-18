@@ -15,10 +15,10 @@
     opacity: 0.7;
     font-size: 18px;
     font-weight: 500;
-    line-height: 48px;
+    line-height: 1em;
     letter-spacing: 1.15px;
     position: relative;
-    margin: 0;
+    margin: 30px 0;
     cursor: pointer;
 }
 
@@ -46,12 +46,21 @@
     cursor: pointer;
 }
 
-.active-filters {
+.tags {
     opacity: 0.7;
     font-size: 18px;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 48px;
     letter-spacing: 1.15px;
+}
+
+.active-filters {
+    opacity: 0.7;
+    font-size: 18px;
+    line-height: 1em;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.05em;
 }
 
 .active-filters__list {
@@ -79,6 +88,8 @@
     outline: none;
     border: none;
     cursor: pointer;
+    letter-spacing: inherit;
+    font-weight: inherit;
 }
 
 .filter-price__form {
@@ -92,16 +103,13 @@
     height: 32px;
     border: 1px solid #000000;
     margin: 5px;
+    margin-left: 0;
     opacity: 0.54;
     font-size: 16px;
     font-weight: 400;
     line-height: 27px;
     letter-spacing: 0.8px;
     padding-left: 5px;
-}
-
-.filter-price__input:first-child {
-    margin-left: 0;
 }
 
 .filter-price__button {
