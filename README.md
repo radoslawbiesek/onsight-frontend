@@ -1,5 +1,5 @@
 # On Sight e-commerce
-'On Sight - your best climbing store' is a simple e-commerce project created to learn React and Redux.
+'On Sight - your best climbing store' is a simple e-commerce project created to practise React and Redux.
 
 Features:
 * multi-filtering products by category, price, color, size nad brand
@@ -16,7 +16,7 @@ Future development:
 * further future = backend (REST API + db)
 
 ## LIVE
-[Shop now!](https://radoslawbiesek.github.io/climbing-store/)
+[Shop now!](https://radoslawbiesek.github.io/onsight/)
 
 ## Built with
 * [React](https://reactjs.org/)
