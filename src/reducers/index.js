@@ -155,7 +155,7 @@ const reducers = (state = initialState, action) => {
                 itemToAdd.quantity += quantityToAdd;
                 return {
                     ...state,
-                    productsTotalPrice: state.productsTotalPrice + quantityToAdd*priceToAdd,
+                    productsTotalPrice: state.productsTotalPrice + quantityToAdd * priceToAdd,
                     totalAmount: state.totalAmount + quantityToAdd,
                     freeShipping: (state.productsTotalPrice + priceToAdd) > state.freeShippingFrom,
                 };    
@@ -164,7 +164,7 @@ const reducers = (state = initialState, action) => {
                 return {
                     ...state,
                     itemsInCart: [...state.itemsInCart, itemToAdd],
-                    productsTotalPrice: state.productsTotalPrice + priceToAdd,
+                    productsTotalPrice: state.productsTotalPrice + priceToAdd * quantityToAdd,
                     totalAmount: state.totalAmount + quantityToAdd,
                     freeShipping: (state.productsTotalPrice + priceToAdd) > state.freeShippingFrom,
                 };
