@@ -1,14 +1,37 @@
 .main-nav {
-    height: 100px;
+    min-height: 100px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     background-color: transparent;
+    position: relative;
+    padding: 5px;
 }
 
 .logo {
+    margin-right: auto;
+}
+
+.logo:hover a {
+    text-decoration: none;
+}
+
+.logo__img {
     height: 24px;
     margin: 0;
+}
+
+.logo__title {
+    display: none;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 8.4px;
+    color: #000;
+}
+
+.menu__cart {
+    order: 1;
+    margin-right: 10px;
 }
 
 .menu__backpack {
@@ -22,12 +45,14 @@
     align-items: center;
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
-.menu__item {
+.menu__link {
     text-decoration: none;
     color: #000;
-    margin: 0 20px;
+    margin: 0;
+    margin-left: 20px;
     font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 6.4px;
@@ -35,8 +60,8 @@
     position: relative;
 }
 
-.menu__item:hover,
-.menu__item--active {
+.menu__link:hover,
+.menu__link--active {
     opacity: 1;
     text-decoration: none;
     color: inherit;
@@ -56,4 +81,55 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
+
+@media screen and (max-width: 768px) {
+    .main-nav {
+        justify-content: space-between;
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    .logo {
+        margin: 0;
+    }
+
+    .logo__img {
+        display: none;
+    }
+
+    .logo__title {
+        display: block;
+    }
+
+    .menu__cart {
+        order: 0;
+    }
+
+    .menu {
+        width: 100%;
+        flex-direction: column;
+        background: rgba(245, 245, 245, 0.99);
+        position: absolute;
+        left: 0;
+        transform: translateY(-110px);
+        transition: transform .3s .1s ease-in-out;
+    }
+    
+    .menu--active {
+        transform: translateY(110px);
+    }
+
+    .menu__item {
+        width: 100%;
+        height: 40px;
+        padding: 5px;
+        text-align: center;
+    }
+    .menu__item:hover {
+        background-color: #fff;
+    }
+    .menu__link {
+        font-size: 20px;
+    }
+}
