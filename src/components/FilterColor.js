@@ -35,7 +35,7 @@ function FilterColor(props) {
         const colorStyles = (item === 'white') ? {background : 'white', border : '1px solid #bdc3c7'} : {background : colorPalette[item] ? colorPalette[item] : item};
         return (
             <li
-                className="filters__color"
+                className="filter__color"
                 key={props.type+colors.indexOf(item)}
                 style={colorStyles}
                 alt={item}
@@ -45,9 +45,9 @@ function FilterColor(props) {
     })
 
     return (
-        <div>
-            <p className='filters__title'>{props.title}</p>
-            <ul className='filters__list filters__list--colors'>
+        <div className='filter--color'>
+            <p className='filter__title'>{props.title}</p>
+            <ul className='filter__list filter__list--colors'>
                 {colorsList}
             </ul>
         </div>

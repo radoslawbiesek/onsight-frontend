@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Hero from './Hero';
-import Filters from './Filters';
+import Sidebar from './Sidebar';
 import Products from './Products';
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
             </div>
             <div className="row">
                 <div className="col col-md-3">
-                    <Filters />
+                    <Sidebar />
                 </div>
                 <div className="col col-md-9">
                     <Products />

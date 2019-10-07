@@ -23,7 +23,6 @@ class FilterPrice extends React.Component {
     }
 
     handleSubmit(e) {
-        console.log(this.state.priceMin, this.state.priceMax);
         e.preventDefault();
         this.props.setPrice(
             (this.state.priceMin !== '') ? this.state.priceMin : 0,
@@ -36,8 +35,8 @@ class FilterPrice extends React.Component {
 
     render() {
         return (
-            <div>
-                <p className='filters__title'>{this.props.title}</p>
+            <div className='filter--price'>
+                <p className='filter__title'>{this.props.title}</p>
                 <form className='filter-price__form' onSubmit={this.handleSubmit}>
                         <div>
                             <input 

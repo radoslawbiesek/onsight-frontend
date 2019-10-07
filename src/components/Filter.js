@@ -28,22 +28,22 @@ function Filter(props) {
     for (let item in filtersCounter) {
         filtersList.push(
             <li 
-                className='filters__item' 
+                className='filter__item' 
                 key={props.type+filtersList.length}
                 onClick={()=>handleClick(item)}
             >
                 {item}
-                <span className='filters__number'>{filtersCounter[item]}</span>
+                <span className='filter__number'>{filtersCounter[item]}</span>
             </li>
         );
     }
 
     return (
-        <div>
-            <p className='filters__title'>
+        <div className='filter'>
+            <p className='filter__title'>
                 {props.title}
             </p>
-            <ul className='filters__list'>
+            <ul className='filter__list'>
                 {filtersList}
             </ul>
         </div>

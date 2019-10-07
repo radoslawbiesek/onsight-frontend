@@ -1,0 +1,13 @@
+.tags__content {
+    opacity: 0.7;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 48px;
+    letter-spacing: 1.15px;
+}
+
+@media screen and (max-width: 768px) {
+    .tags {
+        display: none;
+    }
+}
