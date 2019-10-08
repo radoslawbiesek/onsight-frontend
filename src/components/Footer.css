@@ -1,9 +1,9 @@
 .footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    height: 115px;
-    padding: 0 115px;
+    flex-wrap: wrap;
+    min-height: 115px;
     color: #000000;
     font-size: 18px;
     font-weight: 500;
@@ -12,19 +12,19 @@
 
 .footer__text {
     opacity: 0.5;
+    padding: 0;
+    margin: 0;
 }
 
 .footer__menu {
+    width: 100%;
+    max-width: 300px;
     list-style-type: none;
     display: flex;
+    justify-content: space-between;
     padding: 0;
-}
-
-.footer__item {
     margin: 0;
-    margin-left: 36px;
 }
-
 .footer__link {
     text-decoration: none;
     color: inherit;
@@ -34,4 +34,16 @@
 .footer__link:hover {
     text-decoration: underline;
     color: inherit;
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+    }
+    .footer__menu {
+        order: -1;
+    }
+    .footer__text {
+        text-align: center;
+    }
 }

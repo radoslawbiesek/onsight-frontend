@@ -24,6 +24,7 @@
         display: inline-block;
     }
     .sidebar-section__content {
+        min-width: 200px;
         display: none;
     }
     .shown {

@@ -7,7 +7,7 @@ import { addToCart } from '../actions/cartActions';
 import { selectPage } from '../actions/pageActions';
 import { sortBy } from '../actions/sortingActions';
 
-import './Product.css';
+import './Products.css';
 
 const Products = (props) => {
 
@@ -47,7 +47,7 @@ const Products = (props) => {
     let showingStop = Math.min(props.page * props.showing, props.itemsLength);
 
     return (
-        <div>
+        <main>
             <div className='products__top-nav'>
                 <form className='products__sort-by'>
                     <label>
@@ -74,7 +74,7 @@ const Products = (props) => {
                     &#8594;
                 </li>
             </ul>
-        </div>    
+        </main>    
     )
 }
 

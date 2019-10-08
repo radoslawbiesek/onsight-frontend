@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import ActiveFilters from './ActiveFilters';
+import SidebarSection from './SidebarSection';
 import Filter from './Filter';
 import FilterColor from './FilterColor';
 import FilterPrice from './FilterPrice';
-import ActiveFilters from './ActiveFilters';
-import SidebarSection from './SidebarSection';
 import Tags from './Tags';
 
 import './Sidebar.css';

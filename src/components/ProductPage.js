@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addToCart } from '../actions/cartActions';
 import { getProduct } from '../actions/pageActions';
 
-import './Product.css';
+import './ProductPage.css';
 
 class ProductPage extends React.Component {
     constructor(props) {
