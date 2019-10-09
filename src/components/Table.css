@@ -1,0 +1,49 @@
+.cart-table {
+    margin: 50px 50px 0 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.cart-table__row--header {
+    background-color: #f5f5f5;
+}
+
+.cart-table__data {
+    padding: 20px;
+    text-align: center;
+}
+
+.cart-table__image {
+    width: 120px;
+}
+
+.cart-table__name,
+.cart-table__brand,
+.cart-table__price,
+.cart-table__quantity {
+    margin: 0;
+    text-align: left;
+}
+
+.cart-table__brand {
+    font-weight: 500;
+}
+
+.cart-table__price {
+    text-align: right;
+}
+
+.cart-table__quantity {
+    display: inline;
+}
+
+.cart-table__button {
+    display: inline;
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+    padding: 0;
+}
