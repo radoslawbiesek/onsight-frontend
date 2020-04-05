@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductInCart from './ProductInCart';
+import ProductInCart from '../ProductInCart/ProductInCart';
 import './Table.css';
 
 const Table = (props) => {

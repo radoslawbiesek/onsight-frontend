@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Product from './Product';
+import Product from './Product/Product';
 
-import { addToCart } from '../store/actions/cartActions';
-import { selectPage } from '../store/actions/pageActions';
-import { sortBy } from '../store/actions/sortingActions';
+import { addToCart } from '../../store/actions/cartActions';
+import { selectPage } from '../../store/actions/pageActions';
+import { sortBy } from '../../store/actions/sortingActions';
 
 import './Products.css';
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Table from './Table';
-import CodeInput from './CodeInput';
-import Summary from './Summary';
+import Table from './Table/Table';
+import CodeInput from './CodeInput/CodeInput';
+import Summary from './Summary/Summary';
 
-import { removeFromCart, addToCart, decreaseAmount, checkout } from '../store/actions/cartActions';
+import { removeFromCart, addToCart, decreaseAmount, checkout } from '../../store/actions/cartActions';
 
 import './Cart.css';
 

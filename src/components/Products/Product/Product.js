@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Product.css';
-import backpack from '../images/backpack.png';
+import backpack from '../../../images/backpack.png';
 
 function Product(props) {
     return (    

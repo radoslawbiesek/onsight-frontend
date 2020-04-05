@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ActiveFilters from './ActiveFilters';
-import SidebarSection from './SidebarSection';
-import Filter from './Filter';
-import FilterColor from './FilterColor';
-import FilterPrice from './FilterPrice';
-import Tags from './Tags';
+import ActiveFilters from '../Products/ActiveFilters/ActiveFilters';
+import SidebarSection from './SideBarSection/SidebarSection';
+import Filter from '../Products/Filter/Filter';
+import FilterColor from '../Products/Filter/FilterColor';
+import FilterPrice from '../Products/Filter/FilterPrice';
+import Tags from '../Tags/Tags';
 
 import './Sidebar.css';
 
-import { resetFilters, removeFilter, filterProducts } from '../store/actions/filterActions';
-import { selectPage } from '../store/actions/pageActions';
-import { sortBy } from '../store/actions/sortingActions';
+import { resetFilters, removeFilter, filterProducts } from '../../store/actions/filterActions';
+import { selectPage } from '../../store/actions/pageActions';
+import { sortBy } from '../../store/actions/sortingActions';
 
 const Sidebar = (props) => {
 

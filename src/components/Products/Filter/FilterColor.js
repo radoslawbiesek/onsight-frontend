@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addFilter, filterProducts } from '../store/actions/filterActions';
-import { selectPage } from '../store/actions/pageActions';
+import { addFilter, filterProducts } from '../../../store/actions/filterActions';
+import { selectPage } from '../../../store/actions/pageActions';
 
 import './Filter.css';
 

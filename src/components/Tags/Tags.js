@@ -1,6 +1,5 @@
 import React from 'react';
 import './Tags.css';
-import './SidebarSection';
 
 const Tags = (props) => {
     return (

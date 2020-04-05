@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setPrice, filterProducts } from '../store/actions/filterActions';
-import { selectPage } from '../store/actions/pageActions';
-import { sortBy } from '../store/actions/sortingActions';
+import { setPrice, filterProducts } from '../../../store/actions/filterActions';
+import { selectPage } from '../../../store/actions/pageActions';
+import { sortBy } from '../../../store/actions/sortingActions';
 
 import './Filter.css';
 

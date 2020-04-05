@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './Nav.css';
 import { Link, NavLink } from 'react-router-dom';
-import logo from '../images/logo.png';
-import cart from '../images/backpack.png';
-import HamburgerButton from './HamburgerButton';
+import logo from '../../../images/logo.png';
+import cart from '../../../images/backpack.png';
+import HamburgerButton from './HamburgerButton/HamburgerButton';
 
 class Nav extends React.Component {
 
