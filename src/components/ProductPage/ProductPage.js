@@ -1,77 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { addToCart } from '../../store/actions/cartActions';
 
+import { getProduct } from '../../service/product';
+
 import './ProductPage.css';
 
-class ProductPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            quantity: 1,
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+const ProductPage = (props) => {
+  const [product, setProduct] = useState({});
+  const [error, setError] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
-    componentDidMount() {
-        // this.props.getProduct(this.props.match.params.id);
-    }
+  const productId = props.match.params.productId;
 
-    handleChange(e) {
-        this.setState({ quantity: e.target.value });
-    }
+  useEffect(() => {
+    const fetchProductDetails = async (productId) => {
+      try {
+        const product = await getProduct(productId);
+        setProduct(product);
+      } catch (error) {
+        setError(true);
+      }
+    };
+    fetchProductDetails(productId);
+  }, [productId]);
 
-    handleSubmit(e) {
-        e.preventDefault();
-        this.props.addToCart(this.props.item.id, this.state.quantity);
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.addToCart(productId, quantity);
+  };
 
-    render() {
-        let toRender;
-        if (this.props.item.id === this.props.match.params.id) {
-            toRender = (
-                <div className='product-page'>
-                    <div>
-                        <img className='product-page__image' src={this.props.item.img} alt={this.props.item.name}/>
-                    </div>
-                    <div>
-                        <h1 className='product__name'>{this.props.item.name}</h1>
-                        <p className='product__brand'>{this.props.item.brand}</p>
-                        <p className='product__price'>${parseFloat(this.props.item.price).toFixed(2)}</p>
-                        <p className='product-page__desc'>{this.props.item.desc}</p>
-                        <form onSubmit={this.handleSubmit} className='product-page__form'>
-                            <input
-                                className='product-page__input'
-                                type='number' 
-                                id='quantity'
-                                value={this.state.quantity}
-                                onChange={this.handleChange}
-                            />
-                            <button className='product-page__button'>Add to cart</button>
-                        </form>
-                    </div>
-                </div>
-            )
-        } else {
-            toRender = <div></div>
-        }
-        return <div>{toRender}</div>;
-    }
-}
-
-
-const mapStateToProps = (state) => {
-    return {
-        item: state.selectedProduct
-    }    
-}
+  return (
+    <div className='product-page'>
+      <div>
+        <img
+          className='product-page__image'
+          src={product.img}
+          alt={product.name}
+        />
+      </div>
+      <div>
+        <h1 className='product__name'>{product.name}</h1>
+        <p className='product__brand'>{product.brand}</p>
+        <p className='product__price'>
+          ${parseFloat(product.price).toFixed(2)}
+        </p>
+        <p className='product-page__desc'>{product.desc}</p>
+        <form onSubmit={handleSubmit} className='product-page__form'>
+          <input
+            className='product-page__input'
+            type='number'
+            id='quantity'
+            value={quantity}
+            onChange={(event) => setQuantity(event.target.value)}
+          />
+          <button className='product-page__button'>Add to cart</button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 const mapDispatchToProps = {
-    addToCart
-}
+  addToCart,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);
-
-
+export default connect(null, mapDispatchToProps)(ProductPage);

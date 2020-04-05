@@ -57,7 +57,7 @@ const Products = () => {
           <p>Something went wrong. Try again.</p>
         ) : (
           products.map((product) => (
-            <Product key={product._id} item={product} />
+            <Product key={product._id} {...product} />
           ))
         )}
       </div>

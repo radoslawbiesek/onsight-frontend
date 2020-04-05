@@ -8,7 +8,7 @@ import Home from '../components/Home';
 const routes = (
   <Switch>
     <Route path='/cart' component={Cart} />
-    <Route path='/product/:id' component={ProductPage} />
+    <Route path='/product/:productId' component={ProductPage} />
     <Route path='/' component={Home} />
   </Switch>
 );
