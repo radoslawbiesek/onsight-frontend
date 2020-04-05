@@ -1,14 +1,14 @@
 import React from 'react';
 
-const SortBySelect = ({ options }) => {
+const SortBySelect = ({ options, onChange }) => {
   return (
     <form className='products__sort-by'>
       <label>
         Sort by:
-        <select>
+        <select onChange={(event) => onChange(event.target.value)}>
           {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
+            <option key={option.title} value={option.value}>
+              {option.title}
             </option>
           ))}
         </select>

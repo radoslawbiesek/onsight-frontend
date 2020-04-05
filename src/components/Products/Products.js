@@ -10,7 +10,13 @@ import Backdrop from '../UI/Backdrop/Backdrop';
 
 import './Products.css';
 
-const SORTING_OPTIONS = ['A-Z', 'Z-A', 'Lowest Price', 'Highest Price'];
+const SORTING_OPTIONS = [
+  { title: 'A-Z', value: 'name' },
+  { title: 'Z-A', value: '-name' },
+  { title: 'Lowest Price', value: 'price' },
+  { title: 'Highest Price', value: '-price' },
+];
+
 const PRODUCTS_PER_PAGE = 6;
 
 const Products = () => {
@@ -19,6 +25,7 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [count, setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sorting, setSorting] = useState('name');
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -27,7 +34,8 @@ const Products = () => {
         const limit = PRODUCTS_PER_PAGE;
         const { products, count } = await productService.getProducts(
           limit,
-          offset
+          offset,
+          sorting
         );
         setLoading(false);
         setProducts(products);
@@ -39,12 +47,12 @@ const Products = () => {
     };
     setLoading(true);
     fetchProducts();
-  }, [currentPage]);
+  }, [currentPage, sorting]);
 
   return (
     <main>
       <div className='products__top-nav'>
-        <SortBySelect options={SORTING_OPTIONS} />
+        <SortBySelect options={SORTING_OPTIONS} onChange={setSorting} />
         <ShowingInfo
           currentPage={currentPage}
           productsPerPage={PRODUCTS_PER_PAGE}
@@ -56,9 +64,7 @@ const Products = () => {
         {error ? (
           <p>Something went wrong. Try again.</p>
         ) : (
-          products.map((product) => (
-            <Product key={product._id} {...product} />
-          ))
+          products.map((product) => <Product key={product._id} {...product} />)
         )}
       </div>
       <PageLinks

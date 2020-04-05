@@ -1,10 +1,11 @@
 import { BASE_URL } from '../config/config';
 
-export const getProducts = async (limit, offset) => {
+export const getProducts = async (limit, offset, sort) => {
   try {
     const params = new URLSearchParams([
       ['limit', limit],
       ['offset', offset],
+      ['sort', sort]
     ]);
     const response = await fetch(`${BASE_URL}/products?${params.toString()}`);
     const { data } = await response.json();
