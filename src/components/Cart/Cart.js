@@ -5,7 +5,7 @@ import Table from './Table';
 import CodeInput from './CodeInput';
 import Summary from './Summary';
 
-import { removeFromCart, addToCart, decreaseAmount, checkout } from '../actions/cartActions';
+import { removeFromCart, addToCart, decreaseAmount, checkout } from '../store/actions/cartActions';
 
 import './Cart.css';
 

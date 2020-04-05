@@ -1,5 +1,5 @@
-import products from '../data/products.json';
-import codes from '../data/codes.json';
+import products from '../../data/products.json';
+import codes from '../../data/codes.json';
 
 import { RESET_FILTERS, REMOVE_FILTER, ADD_FILTER, FILTER_PRODUCTS, SET_PRICES } from '../actions/filterActions';
 import { ADD_TO_CART, REMOVE_FROM_CART, DECREASE_AMOUNT, USE_DISCOUNT_CODE, CHECKOUT } from '../actions/cartActions';

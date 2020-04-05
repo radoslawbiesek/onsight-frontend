@@ -10,9 +10,9 @@ import Tags from './Tags';
 
 import './Sidebar.css';
 
-import { resetFilters, removeFilter, filterProducts } from '../actions/filterActions';
-import { selectPage } from '../actions/pageActions';
-import { sortBy } from '../actions/sortingActions';
+import { resetFilters, removeFilter, filterProducts } from '../store/actions/filterActions';
+import { selectPage } from '../store/actions/pageActions';
+import { sortBy } from '../store/actions/sortingActions';
 
 const Sidebar = (props) => {
 

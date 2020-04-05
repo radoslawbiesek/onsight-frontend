@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import Product from './Product';
 
-import { addToCart } from '../actions/cartActions';
-import { selectPage } from '../actions/pageActions';
-import { sortBy } from '../actions/sortingActions';
+import { addToCart } from '../store/actions/cartActions';
+import { selectPage } from '../store/actions/pageActions';
+import { sortBy } from '../store/actions/sortingActions';
 
 import './Products.css';
 

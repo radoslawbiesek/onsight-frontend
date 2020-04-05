@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { useDiscountCode } from '../actions/cartActions';
+import { useDiscountCode } from '../store/actions/cartActions';
 import './CodeInput.css';
 
 class CodeInput extends React.Component {

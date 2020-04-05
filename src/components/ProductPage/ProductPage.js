@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addToCart } from '../actions/cartActions';
-import { getProduct } from '../actions/pageActions';
+import { addToCart } from '../store/actions/cartActions';
+import { getProduct } from '../store/actions/pageActions';
 
 import './ProductPage.css';
 
