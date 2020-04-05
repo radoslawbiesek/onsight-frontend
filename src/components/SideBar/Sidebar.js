@@ -6,25 +6,22 @@ import SidebarSection from './SideBarSection/SidebarSection';
 import Filter from '../Products/Filter/Filter';
 import FilterColor from '../Products/Filter/FilterColor';
 import FilterPrice from '../Products/Filter/FilterPrice';
-import Tags from '../Tags/Tags';
+import Tags from './Tags/Tags';
 
 import './Sidebar.css';
 
 import { resetFilters, removeFilter, filterProducts } from '../../store/actions/filterActions';
-import { sortBy } from '../../store/actions/sortingActions';
 
 const Sidebar = (props) => {
 
     const handleRemove = (filterType, filterValue) => {
         props.removeFilter(filterType, filterValue);
         props.filterProducts();
-        props.sortBy(props.sortingBy);
     }
 
     const handleReset = () => {
         props.resetFilters();
         props.filterProducts();
-        props.sortBy(props.sortingBy);
     }
 
     return (
@@ -78,7 +75,6 @@ const mapStateToProps = (state) => {
     return {
         items: state.itemsAll,
         filters: state.filters,
-        sortingBy: state.sortingBy
     }
 };
 
@@ -86,7 +82,6 @@ const mapDispatchToProps = {
     resetFilters,
     removeFilter,
     filterProducts,
-    sortBy,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

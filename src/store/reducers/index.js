@@ -2,7 +2,6 @@ import codes from '../../data/codes.json';
 
 import { RESET_FILTERS, REMOVE_FILTER, ADD_FILTER, FILTER_PRODUCTS, SET_PRICES } from '../actions/filterActions';
 import { ADD_TO_CART, REMOVE_FROM_CART, DECREASE_AMOUNT, USE_DISCOUNT_CODE, CHECKOUT } from '../actions/cartActions';
-import { SORT_BY } from '../actions/sortingActions';
 
 const initialState = {
     // filters
@@ -14,11 +13,6 @@ const initialState = {
     },
     priceMin: 0,
     priceMax: Infinity,
-    
-    // sorting
-    sortingBy: 'A-Z',
-
-    selectedProduct: {},
 
     // cart
     itemsInCart: [],
@@ -37,28 +31,6 @@ const initialState = {
 
 const reducers = (state = initialState, action) => {
     switch(action.type) {
-                
-        // SORTING REDUCERS
-        case SORT_BY:
-            let sortedItems;
-            switch (action.sortingBy) {
-                case 'Lowest Price':
-                    sortedItems = state.itemsToDisplay.sort((a, b) => a.price - b.price);
-                    break;
-                case 'Highest Price':
-                    sortedItems = state.itemsToDisplay.sort((a, b) => b.price - a.price);
-                    break;
-                case 'Z-A':
-                    sortedItems = state.itemsToDisplay.sort((a, b) => b.name.localeCompare(a.name));
-                    break;
-                default: //A-Z
-                    sortedItems = state.itemsToDisplay.sort((a, b) => a.name.localeCompare(b.name));
-            }
-            return {
-                ...state, 
-                itemsToDisplay: sortedItems, 
-                sortingBy: action.sortingBy
-            }
 
         // FILTERS REDUCERS
         case RESET_FILTERS:
@@ -124,7 +96,7 @@ const reducers = (state = initialState, action) => {
 
         // CART REDUCERS
         case ADD_TO_CART:
-            const itemToAdd = state.itemsAll.find(item => item.id === action.id);
+            const itemToAdd = action.item;
             const priceToAdd = parseFloat(itemToAdd.price);
             const quantityToAdd = parseInt(action.quantity);
 
@@ -148,7 +120,7 @@ const reducers = (state = initialState, action) => {
             }
 
         case DECREASE_AMOUNT:
-            const itemToDecrease = state.itemsAll.find(item => item.id === action.id);
+            const itemToDecrease = state.itemsInCart.find(item => item.id === action.id);
             if (itemToDecrease.quantity === 1) {
                 return { 
                     ...state
@@ -164,7 +136,7 @@ const reducers = (state = initialState, action) => {
             }
 
         case REMOVE_FROM_CART:
-            const { price, quantity } = state.itemsAll.find(item => item.id === action.id);
+            const { price, quantity } = state.itemsInCart.find(item => item.id === action.id);
             const itemsAfterRemove = state.itemsInCart.filter(item => item.id !== action.id);
 
             return { 

@@ -28,7 +28,7 @@ const ProductPage = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.addToCart(productId, quantity);
+    props.addToCart(product, quantity);
   };
 
   return (
@@ -62,8 +62,8 @@ const ProductPage = (props) => {
   );
 };
 
-const mapDispatchToProps = {
-  addToCart,
-};
+const mapDispatchToProps =  dispatch => ({
+  addToCart: (product, quantity) => dispatch(addToCart(product, quantity)),
+});
 
 export default connect(null, mapDispatchToProps)(ProductPage);

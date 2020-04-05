@@ -4,10 +4,10 @@ export const DECREASE_AMOUNT = 'DECREASE_AMOUNT';
 export const USE_DISCOUNT_CODE = 'USE_DISCOUNT_CODE';
 export const CHECKOUT = 'CHECKOUT';
 
-export const addToCart = (id, quantity = 1) => {
+export const addToCart = (item, quantity = 1) => {
     return {
         type: ADD_TO_CART,
-        id,
+        item,
         quantity
     }
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { setPrice, filterProducts } from '../../../store/actions/filterActions';
-import { sortBy } from '../../../store/actions/sortingActions';
 
 import './Filter.css';
 
@@ -28,7 +27,6 @@ class FilterPrice extends React.Component {
             (this.state.priceMax !== '') ? this.state.priceMax : Infinity
         );
         this.props.filterProducts();
-        this.props.sortBy(this.props.sortingBy);
     }
 
     render() {
@@ -64,13 +62,11 @@ const mapStateToProps = (state) => {
         items: [],
         priceMax: state.priceMax,
         priceMin: state.priceMin,
-        sortingBy: state.sortingBy
     }
 }
 const mapDispatchToProps = {
     setPrice,
     filterProducts,
-    sortBy
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterPrice);
