@@ -1,98 +1,73 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+
+import * as productService from '../../service/product';
 
 import Product from './Product/Product';
-
-import { addToCart } from '../../store/actions/cartActions';
-import { selectPage } from '../../store/actions/pageActions';
-import { sortBy } from '../../store/actions/sortingActions';
+import SortBySelect from './SortBySelect/SortBySelect';
+import ShowingInfo from './ShowingInfo/ShowingInfo';
+import PageLinks from './PageLinks/PageLinks';
+import Backdrop from '../UI/Backdrop/Backdrop';
 
 import './Products.css';
 
-const Products = (props) => {
+const SORTING_OPTIONS = ['A-Z', 'Z-A', 'Lowest Price', 'Highest Price'];
+const PRODUCTS_PER_PAGE = 6;
 
-    const handleClick = (id) => {
-        props.addToCart(id);
-    }
+const Products = () => {
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [count, setCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
-    const handleChange = (event) => {
-        props.sortBy(event.target.value);
-    }
-
-    let itemsList = props.items.map(item => {
-        return (
-            <Product
-                item={item}
-                key={item.id}
-                onClick = {()=>{handleClick(item.id)}}
-            />
-        )
-    });
-
-    let pages = [];
-    for (let i = 0; i < props.pages; i++) {
-        let pageNumber = i+1;
-        pages.push(
-            <li 
-                key={`page${pageNumber}`}
-                onClick={()=>props.selectPage(pageNumber)}
-                className={(props.page === pageNumber) ? 'products__page-link products__page-link--active' : 'products__page-link'}
-            >
-                {`0${pageNumber}`}
-            </li>
-        )
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const offset = (currentPage - 1) * PRODUCTS_PER_PAGE;
+        const limit = PRODUCTS_PER_PAGE;
+        const { products, count } = await productService.getProducts(
+          limit,
+          offset
+        );
+        setLoading(false);
+        setProducts(products);
+        setCount(count);
+      } catch (error) {
+        setLoading(false);
+        setError(true);
+      }
     };
+    setLoading(true);
+    fetchProducts();
+  }, [currentPage]);
 
-    let showingStart = 1 + (props.page - 1) * props.showing;
-    let showingStop = Math.min(props.page * props.showing, props.itemsLength);
-
-    return (
-        <main>
-            <div className='products__top-nav'>
-                <form className='products__sort-by'>
-                    <label>
-                        Sort by:
-                        <select defaultValue="A-Z" onChange={handleChange}>
-                            <option value="A-Z">A-Z</option>
-                            <option value="Z-A">Z-A</option>
-                            <option value="Lowest Price">Lowest Price</option>
-                            <option value="Highest Price">Highest Price</option>
-                        </select>
-                    </label>
-                </form>
-                <p className='products__showing'>Showing {Math.min(showingStart, props.itemsLength)} - {showingStop} of {props.itemsLength} results</p>
-            </div>
-            <div className='products-grid'>
-                {itemsList.slice(showingStart-1,showingStop)}
-            </div>
-            <ul className='products__pages-list'>
-                {pages}
-                <li 
-                    onClick={()=>props.selectPage(props.page+1)}
-                    className='products__page-link'
-                >
-                    &#8594;
-                </li>
-            </ul>
-        </main>    
-    )
-}
-
-const mapStateToProps = (state) => {
-    return {
-        items: state.itemsToDisplay,
-        itemsLength: state.itemsToDisplayLength,
-        page: state.page,
-        pages: state.pages,
-        showing: state.showing,
-        sortingBy: state.sortingBy
-    }
-}
-
-const mapDispatchToProps = {
-    addToCart,
-    sortBy,
-    selectPage,
+  return (
+    <main>
+      <div className='products__top-nav'>
+        <SortBySelect options={SORTING_OPTIONS} />
+        <ShowingInfo
+          currentPage={currentPage}
+          productsPerPage={PRODUCTS_PER_PAGE}
+          count={count}
+        />
+      </div>
+      <div className='products-grid'>
+        {loading && <Backdrop />}
+        {error ? (
+          <p>Something went wrong. Try again.</p>
+        ) : (
+          products.map((product) => (
+            <Product key={product._id} item={product} />
+          ))
+        )}
+      </div>
+      <PageLinks
+        totalPages={Math.ceil(count / PRODUCTS_PER_PAGE)}
+        currentPage={currentPage}
+        onClick={setCurrentPage}
+      />
+    </main>
+  );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default Products;

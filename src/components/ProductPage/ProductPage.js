@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addToCart } from '../../store/actions/cartActions';
-import { getProduct } from '../../store/actions/pageActions';
 
 import './ProductPage.css';
 
@@ -17,7 +16,7 @@ class ProductPage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getProduct(this.props.match.params.id);
+        // this.props.getProduct(this.props.match.params.id);
     }
 
     handleChange(e) {
@@ -70,8 +69,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    addToCart,
-    getProduct
+    addToCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

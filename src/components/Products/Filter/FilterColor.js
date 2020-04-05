@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addFilter, filterProducts } from '../../../store/actions/filterActions';
-import { selectPage } from '../../../store/actions/pageActions';
 
 import './Filter.css';
 
@@ -21,7 +20,6 @@ function FilterColor(props) {
     const handleClick = (type, item) => {
         props.addFilter(type, item);
         props.filterProducts();
-        props.selectPage(1);
     }
 
     let colors = [];
@@ -56,13 +54,12 @@ function FilterColor(props) {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.itemsToDisplay
+        items: []
     }
 }
 const mapDispatchToProps = {
     addFilter,
-    filterProducts,
-    selectPage,
+    filterProducts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterColor);

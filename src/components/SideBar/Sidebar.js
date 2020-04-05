@@ -11,7 +11,6 @@ import Tags from '../Tags/Tags';
 import './Sidebar.css';
 
 import { resetFilters, removeFilter, filterProducts } from '../../store/actions/filterActions';
-import { selectPage } from '../../store/actions/pageActions';
 import { sortBy } from '../../store/actions/sortingActions';
 
 const Sidebar = (props) => {
@@ -19,14 +18,12 @@ const Sidebar = (props) => {
     const handleRemove = (filterType, filterValue) => {
         props.removeFilter(filterType, filterValue);
         props.filterProducts();
-        props.selectPage(1);
         props.sortBy(props.sortingBy);
     }
 
     const handleReset = () => {
         props.resetFilters();
         props.filterProducts();
-        props.selectPage(1);
         props.sortBy(props.sortingBy);
     }
 
@@ -89,7 +86,6 @@ const mapDispatchToProps = {
     resetFilters,
     removeFilter,
     filterProducts,
-    selectPage,
     sortBy,
 };
 

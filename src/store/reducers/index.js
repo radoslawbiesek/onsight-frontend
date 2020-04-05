@@ -1,17 +1,10 @@
-import products from '../../data/products.json';
 import codes from '../../data/codes.json';
 
 import { RESET_FILTERS, REMOVE_FILTER, ADD_FILTER, FILTER_PRODUCTS, SET_PRICES } from '../actions/filterActions';
 import { ADD_TO_CART, REMOVE_FROM_CART, DECREASE_AMOUNT, USE_DISCOUNT_CODE, CHECKOUT } from '../actions/cartActions';
-import { SELECT_PAGE, GET_PRODUCT } from '../actions/pageActions';
 import { SORT_BY } from '../actions/sortingActions';
 
 const initialState = {
-    // products lists
-    itemsAll: products,
-    itemsToDisplay: products.sort((a, b) => a.name.localeCompare(b.name)),
-    itemsToDisplayLength: products.length,
-
     // filters
     filters : {
         color: [],
@@ -24,11 +17,6 @@ const initialState = {
     
     // sorting
     sortingBy: 'A-Z',
-
-    // pagination
-    page: 1,
-    pages: Math.ceil(products.length / 6),
-    showing: 6,
 
     selectedProduct: {},
 
@@ -132,17 +120,6 @@ const reducers = (state = initialState, action) => {
                 ...state, 
                 priceMin: action.priceMin, 
                 priceMax: action.priceMax
-            };
-
-        // PAGE REDUCERS 
-        case SELECT_PAGE:
-            return (action.page > state.pages) ? state : { ...state, page: action.page }
-
-        case GET_PRODUCT: 
-            const selectedProduct = state.itemsAll.find(item => item.id === action.id);
-            return { 
-                ...state, 
-                selectedProduct 
             };
 
         // CART REDUCERS

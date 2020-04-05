@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addFilter, filterProducts } from '../../../store/actions/filterActions';
-import { selectPage } from '../../../store/actions/pageActions';
 
 import './Filter.css';
 
@@ -12,7 +11,6 @@ function Filter(props) {
     const handleClick = (item) => {
         props.addFilter(props.type, item);
         props.filterProducts();
-        props.selectPage(1);
     }
 
     let filtersCounter = {};
@@ -52,13 +50,12 @@ function Filter(props) {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.itemsToDisplay
+        items: []
     }
 }
 const mapDispatchToProps = {
     addFilter,
-    filterProducts,
-    selectPage
+    filterProducts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
