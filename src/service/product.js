@@ -26,3 +26,13 @@ export const getProduct = async (productId) => {
     throw new Error(error);
   }
 };
+
+export const getFilters = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/filters/`);
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
