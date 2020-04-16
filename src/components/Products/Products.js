@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
-import * as productService from '../../service/product';
+import { useFetch } from '../../hooks/';
 
 import Product from './Product/Product';
 import SortBySelect from './SortBySelect/SortBySelect';
@@ -20,58 +20,48 @@ const SORTING_OPTIONS = [
 const PRODUCTS_PER_PAGE = 6;
 
 const Products = () => {
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState([]);
-  const [count, setCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sorting, setSorting] = useState('name');
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState('name');
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const offset = (currentPage - 1) * PRODUCTS_PER_PAGE;
-        const limit = PRODUCTS_PER_PAGE;
-        const { products, count } = await productService.getProducts(
-          limit,
-          offset,
-          sorting
-        );
-        setLoading(false);
-        setProducts(products);
-        setCount(count);
-      } catch (error) {
-        setLoading(false);
-        setError(true);
-      }
-    };
-    setLoading(true);
-    fetchProducts();
-  }, [currentPage, sorting]);
+  const getParamsString = useCallback((page, sort) => {
+    const offset = (page - 1) * PRODUCTS_PER_PAGE;
+    const limit = PRODUCTS_PER_PAGE;
+    const params = new URLSearchParams([
+      ['limit', limit],
+      ['offset', offset],
+      ['sort', sort],
+    ]);
+    return params.toString();
+  });
+
+  const [data, loading, error] = useFetch(`/products?${getParamsString(page, sort)}`);
+  const { products, count } = data || { products: [], count: null };
 
   return (
     <main>
       <div className='products__top-nav'>
-        <SortBySelect options={SORTING_OPTIONS} onChange={setSorting} />
-        <ShowingInfo
-          currentPage={currentPage}
-          productsPerPage={PRODUCTS_PER_PAGE}
-          count={count}
-        />
+        <SortBySelect options={SORTING_OPTIONS} onChange={setSort} />
+        {count && (
+          <ShowingInfo
+            currentPage={page}
+            productsPerPage={PRODUCTS_PER_PAGE}
+            count={count}
+          />
+        )}
       </div>
       <div className='products-grid'>
         {loading && <Backdrop />}
-        {error ? (
-          <p>Something went wrong. Try again.</p>
-        ) : (
-          products.map((product) => <Product key={product._id} {...product} />)
-        )}
+        {error && <p>Something went wrong. Try again.</p>}
+        {products &&
+          products.map((product) => <Product key={product._id} {...product} />)}
       </div>
-      <PageLinks
-        totalPages={Math.ceil(count / PRODUCTS_PER_PAGE)}
-        currentPage={currentPage}
-        onClick={setCurrentPage}
-      />
+      {count && (
+        <PageLinks
+          totalPages={Math.ceil(count / PRODUCTS_PER_PAGE)}
+          currentPage={page}
+          onClick={setPage}
+        />
+      )}
     </main>
   );
 };
