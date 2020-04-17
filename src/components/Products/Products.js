@@ -1,7 +1,6 @@
-import React, { useState, useCallback, useContext } from 'react';
+import React, { useState, useCallback } from 'react';
 
-import { CartContext } from '../../context';
-import { useFetch } from '../../hooks/';
+import { useFetch, useCart } from '../../hooks';
 
 import { PRODUCTS_PER_PAGE, SORTING_OPTIONS } from '../../constants';
 
@@ -17,7 +16,7 @@ const Products = () => {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState(SORTING_OPTIONS[0].value);
 
-  const { addToCart } = useContext(CartContext);
+  const { addToCart } = useCart();
 
   const getParamsString = useCallback((page, sort) => {
     const offset = (page - 1) * PRODUCTS_PER_PAGE;

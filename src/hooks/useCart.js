@@ -1,6 +1,11 @@
-import React, { createContext, useReducer, useCallback } from 'react';
+import React, {
+  createContext,
+  useReducer,
+  useCallback,
+  useContext,
+} from 'react';
 
-export const CartContext = createContext();
+const CartContext = createContext();
 
 const initialState = {
   items: [],
@@ -21,7 +26,11 @@ function cartReducer(state, action) {
       const itemInCart = findItemById(state.items, item._id);
 
       if (itemInCart) {
-        const increasedItems = changeQuantityById(state.items, item._id, quantity);
+        const increasedItems = changeQuantityById(
+          state.items,
+          item._id,
+          quantity
+        );
         return {
           ...state,
           totalAmount: state.totalAmount + quantity,
@@ -134,4 +143,8 @@ export function CartProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
+}
+
+export function useCart() {
+  return useContext(CartContext);
 }

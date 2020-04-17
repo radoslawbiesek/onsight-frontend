@@ -1,16 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
-import { useFetch } from '../../hooks';
-import { CartContext } from '../../context';
+import { useFetch, useCart } from '../../hooks';
 
 import './ProductPage.css';
 
-
 const ProductPage = ({ match }) => {
-  const [quantity, setQuantity] = useState(1);
-  const { addToCart } = useContext(CartContext);
-
   const productId = match.params.productId;
+
+  const [quantity, setQuantity] = useState(1);
+
+  const { addToCart } = useCart();
 
   const [{ product }, loading, error] = useFetch(`/products/${productId}`, {
     result: { product: {} },

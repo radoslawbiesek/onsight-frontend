@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { CartProvider } from './context/cartContext';
+import { CartProvider } from './hooks';
 
 import App from './components/App';
 

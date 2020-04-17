@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
-import { CartContext } from '../../../context';
+import { useCart } from '../../../hooks';
 
 import './Nav.css';
 import { Link, NavLink } from 'react-router-dom';
@@ -10,7 +10,8 @@ import HamburgerButton from './HamburgerButton/HamburgerButton';
 
 const Nav = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
-  const { totalAmount } = useContext(CartContext);
+  
+  const { totalAmount } = useCart();
 
   const handleHamburgerClick = () => {
     setIsMenuActive(!isMenuActive);

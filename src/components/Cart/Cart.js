@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { CartContext } from '../../context';
+import { useCart } from '../../hooks';
 
 import Table from './Table/Table';
 import CodeInput from './CodeInput/CodeInput';
@@ -9,7 +9,7 @@ import Summary from './Summary/Summary';
 import './Cart.css';
 
 const Cart = (props) => {
-  const { items, addToCart, removeFromCart, decreaseAmount } = useContext(CartContext);
+  const { items, addToCart, removeFromCart, decreaseAmount } = useCart();
 
   const renderCart = () => {
     return (
