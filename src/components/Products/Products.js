@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 
 import { useFetch } from '../../hooks/';
+import { PRODUCTS_PER_PAGE, SORTING_OPTIONS } from '../../constants';
 
 import Product from './Product/Product';
 import SortBySelect from './SortBySelect/SortBySelect';
@@ -10,18 +11,9 @@ import Backdrop from '../UI/Backdrop/Backdrop';
 
 import './Products.css';
 
-const SORTING_OPTIONS = [
-  { title: 'A-Z', value: 'name' },
-  { title: 'Z-A', value: '-name' },
-  { title: 'Lowest Price', value: 'price' },
-  { title: 'Highest Price', value: '-price' },
-];
-
-const PRODUCTS_PER_PAGE = 6;
-
 const Products = () => {
   const [page, setPage] = useState(1);
-  const [sort, setSort] = useState('name');
+  const [sort, setSort] = useState(SORTING_OPTIONS[0].value);
 
   const getParamsString = useCallback((page, sort) => {
     const offset = (page - 1) * PRODUCTS_PER_PAGE;
