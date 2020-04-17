@@ -1,65 +1,42 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useContext } from 'react';
+
+import { CartContext } from '../../context';
 
 import Table from './Table/Table';
 import CodeInput from './CodeInput/CodeInput';
 import Summary from './Summary/Summary';
 
-import { removeFromCart, addToCart, decreaseAmount, checkout } from '../../store/actions/cartActions';
-
 import './Cart.css';
 
 const Cart = (props) => {
+  const { items, addToCart, removeFromCart, decreaseAmount } = useContext(CartContext);
 
-    const renderCart = () => {
-        return (
-            <div className='cart'>
-                <div>
-                    <Table 
-                        itemsInCart={props.itemsInCart}
-                        removeFromCart={props.removeFromCart}
-                        addToCart={props.addToCart}
-                        decreaseAmount={props.decreaseAmount}
-                    />
-                    <CodeInput />
-                </div>
-                <Summary 
-                    productsTotalPrice={props.productsTotalPrice}
-                    discount={props.discount}
-                    shippingCost={props.shippingCost}
-                    freeShipping={props.freeShipping}
-                    freeShippingFrom={props.freeShippingFrom}
-                />
-            </div>
-        );
-    }
-
+  const renderCart = () => {
     return (
+      <div className='cart'>
         <div>
-            <h1 className='cart__title'>YOUR CART</h1>
-            {props.itemsInCart.length ? renderCart() : <p className='cart__empty'>Your shopping cart is empty.</p>}
+          <Table
+            itemsInCart={items}
+            removeFromCart={removeFromCart}
+            addToCart={addToCart}
+            decreaseAmount={decreaseAmount}
+          />
+          <CodeInput />
         </div>
-    )
-}
+      </div>
+    );
+  };
 
+  return (
+    <div>
+      <h1 className='cart__title'>YOUR CART</h1>
+      {items.length ? (
+        renderCart()
+      ) : (
+        <p className='cart__empty'>Your shopping cart is empty.</p>
+      )}
+    </div>
+  );
+};
 
-const mapStateToProps = (state) => {
-    return {
-        itemsInCart: state.itemsInCart,
-        productsTotalPrice: state.productsTotalPrice,
-        total: state.total,
-        freeShipping: state.freeShipping,
-        discount: state.discount,
-        shippingCost: state.shippingCost,
-        freeShippingFrom: state.freeShippingFrom
-    }
-}
-
-const mapDispatchToProps = {
-    removeFromCart,
-    addToCart,
-    decreaseAmount,
-    checkout,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default Cart;

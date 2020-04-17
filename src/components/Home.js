@@ -12,7 +12,7 @@ const Home = () => {
       </div>
       <div className='row'>
         <div className='col col-md-3'>
-          <Sidebar />
+          {/* <Sidebar /> */}
         </div>
         <div className='col col-md-9'>
           <Products />

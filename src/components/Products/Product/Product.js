@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './Product.css';
 import backpack from '../../../images/backpack.png';
 
-const Product = ({ _id, img, name, brand, price }) => {
+const Product = ({ _id, img, name, brand, price, addToCart }) => {
   return (
     <div className='product__card'>
       <div className='product__image'>
@@ -16,8 +16,8 @@ const Product = ({ _id, img, name, brand, price }) => {
         <p className='product__name'>{name}</p>
         <p className='product__brand'>{brand}</p>
         <p className='product__price'>${parseFloat(price).toFixed(2)}</p>
-        <button className='product__add-button' onClick={() => {}}>
-          <img className='product__backpack' alt='add' src={backpack} /> 
+        <button className='product__add-button' onClick={addToCart}>
+          <img className='product__backpack' alt='add' src={backpack}/> 
           Add to cart
         </button>
       </div>

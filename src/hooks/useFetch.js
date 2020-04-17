@@ -1,5 +1,5 @@
  
-import React, { useEffect, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { BASE_URL } from '../config/config';
 
 const LOADING = 'LOADING';

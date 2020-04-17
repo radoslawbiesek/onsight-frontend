@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useContext } from 'react';
 
 import { useFetch } from '../../hooks';
-
-import { addToCart } from '../../store/actions/cartActions';
+import { CartContext } from '../../context';
 
 import './ProductPage.css';
 
-const ProductPage = ({ match, addToCart }) => {
+
+const ProductPage = ({ match }) => {
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useContext(CartContext);
 
   const productId = match.params.productId;
 
   const [{ product }, loading, error] = useFetch(`/products/${productId}`, {
     result: { product: {} },
   });
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     addToCart(product, quantity);
@@ -58,8 +58,4 @@ const ProductPage = ({ match, addToCart }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  addToCart: (product, quantity) => dispatch(addToCart(product, quantity)),
-});
-
-export default connect(null, mapDispatchToProps)(ProductPage);
+export default ProductPage;

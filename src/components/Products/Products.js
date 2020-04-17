@@ -1,6 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 
+import { CartContext } from '../../context';
 import { useFetch } from '../../hooks/';
+
 import { PRODUCTS_PER_PAGE, SORTING_OPTIONS } from '../../constants';
 
 import Product from './Product/Product';
@@ -15,20 +17,21 @@ const Products = () => {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState(SORTING_OPTIONS[0].value);
 
+  const { addToCart } = useContext(CartContext);
+
   const getParamsString = useCallback((page, sort) => {
     const offset = (page - 1) * PRODUCTS_PER_PAGE;
     const limit = PRODUCTS_PER_PAGE;
     const params = new URLSearchParams({ limit, offset, sort });
     return params.toString();
-  });
+  }, []);
 
-  const [
-    { products, count },
-    loading,
-    error,
-  ] = useFetch(`/products?${getParamsString(page, sort)}`, {
-    result: { products: [], count: null },
-  });
+  const [{ products, count }, loading, error] = useFetch(
+    `/products?${getParamsString(page, sort)}`,
+    {
+      result: { products: [], count: null },
+    }
+  );
 
   return (
     <main>
@@ -46,7 +49,13 @@ const Products = () => {
         {loading && <Backdrop />}
         {error && <p>Something went wrong. Try again.</p>}
         {products &&
-          products.map((product) => <Product key={product._id} {...product} />)}
+          products.map((product) => (
+            <Product
+              key={product._id}
+              addToCart={() => addToCart(product)}
+              {...product}
+            />
+          ))}
       </div>
       {count && (
         <PageLinks
