@@ -26,16 +26,17 @@ const Products = () => {
   const getParamsString = useCallback((page, sort) => {
     const offset = (page - 1) * PRODUCTS_PER_PAGE;
     const limit = PRODUCTS_PER_PAGE;
-    const params = new URLSearchParams([
-      ['limit', limit],
-      ['offset', offset],
-      ['sort', sort],
-    ]);
+    const params = new URLSearchParams({ limit, offset, sort });
     return params.toString();
   });
 
-  const [data, loading, error] = useFetch(`/products?${getParamsString(page, sort)}`);
-  const { products, count } = data || { products: [], count: null };
+  const [
+    { products, count },
+    loading,
+    error,
+  ] = useFetch(`/products?${getParamsString(page, sort)}`, {
+    result: { products: [], count: null },
+  });
 
   return (
     <main>

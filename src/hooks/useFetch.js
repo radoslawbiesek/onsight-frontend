@@ -16,7 +16,7 @@ const fetchReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOADING:
       return {
-        result: null,
+        ...state,
         loading: true,
         error: null,
       };
@@ -28,7 +28,7 @@ const fetchReducer = (state = initialState, action) => {
       };
     case ERROR:
       return {
-        result: null,
+        ...state,
         loading: false,
         error: action.payload.error,
       };
@@ -37,7 +37,7 @@ const fetchReducer = (state = initialState, action) => {
   }
 };
 
-export const useFetch = (endpoint) => {
+export const useFetch = (endpoint, initialState = { result: null }) => {
   const [state, dispatch] = useReducer(fetchReducer, initialState);
 
   useEffect(() => {

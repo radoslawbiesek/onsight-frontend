@@ -12,9 +12,10 @@ const ProductPage = ({ match, addToCart }) => {
 
   const productId = match.params.productId;
 
-  const [data, loading, error] = useFetch(`/products/${productId}`);
-  const { product } = data || { product: {} };
-
+  const [{ product }, loading, error] = useFetch(`/products/${productId}`, {
+    result: { product: {} },
+  });
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     addToCart(product, quantity);
