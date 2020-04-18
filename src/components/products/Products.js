@@ -4,6 +4,7 @@ import { useFetch, useCart } from '../../hooks';
 
 import { PRODUCTS_PER_PAGE, SORTING_OPTIONS } from '../../constants';
 
+import FilterBar from './FilterBar/FilterBar';
 import SortBySelect from './SortBySelect/SortBySelect';
 import ShowingInfo from './ShowingInfo/ShowingInfo';
 import ProductsList from './ProductsList/ProductsList';
@@ -33,30 +34,37 @@ const Products = () => {
   );
 
   return (
-    <main>
-      <div className='products__top-nav'>
-        <SortBySelect options={SORTING_OPTIONS} onChange={setSort} />
+    <div className='row'>
+      <aside className='col col-md-3'>
+        <FilterBar />
+      </aside>
+      <main className='col col-md-9'>
+        <div className='products__top-nav'>
+          <SortBySelect options={SORTING_OPTIONS} onChange={setSort} />
+          {count && (
+            <ShowingInfo
+              currentPage={page}
+              productsPerPage={PRODUCTS_PER_PAGE}
+              count={count}
+            />
+          )}
+        </div>
+        <div className='products-grid'>
+          {loading && <Backdrop />}
+          {error && <p>Something went wrong. Try again.</p>}
+          {products && (
+            <ProductsList products={products} addToCart={addToCart} />
+          )}
+        </div>
         {count && (
-          <ShowingInfo
+          <PageLinks
+            totalPages={Math.ceil(count / PRODUCTS_PER_PAGE)}
             currentPage={page}
-            productsPerPage={PRODUCTS_PER_PAGE}
-            count={count}
+            onClick={setPage}
           />
         )}
-      </div>
-      <div className='products-grid'>
-        {loading && <Backdrop />}
-        {error && <p>Something went wrong. Try again.</p>}
-        {products && <ProductsList products={products} addToCart={addToCart}/>}
-      </div>
-      {count && (
-        <PageLinks
-          totalPages={Math.ceil(count / PRODUCTS_PER_PAGE)}
-          currentPage={page}
-          onClick={setPage}
-        />
-      )}
-    </main>
+      </main>
+    </div>
   );
 };
 
