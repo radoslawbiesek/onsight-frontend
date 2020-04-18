@@ -8,8 +8,14 @@ import Summary from './Summary/Summary';
 
 import './Cart.css';
 
-const Cart = (props) => {
-  const { items, addToCart, removeFromCart, decreaseAmount } = useCart();
+const Cart = () => {
+  const {
+    items,
+    totalPrice,
+    addToCart,
+    removeFromCart,
+    decreaseAmount,
+  } = useCart();
 
   const renderCart = () => {
     return (
@@ -23,6 +29,13 @@ const Cart = (props) => {
           />
           <CodeInput />
         </div>
+        <Summary
+          totalPrice={totalPrice}
+          discount={0}
+          shippingCost={8.99}
+          freeShippingFrom={100}
+          checkout={() => {}}
+        />
       </div>
     );
   };
