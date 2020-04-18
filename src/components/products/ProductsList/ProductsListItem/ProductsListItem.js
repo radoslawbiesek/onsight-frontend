@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './Product.css';
-import backpack from '../../../images/backpack.png';
+import './ProductsListItem.css';
+import backpack from '../../../../images/backpack.png';
 
-const Product = ({ _id, img, name, brand, price, addToCart }) => {
+const ProductsListItem = ({ _id, img, name, brand, price, addToCart }) => {
   return (
     <div className='product__card'>
       <div className='product__image'>
@@ -25,4 +25,4 @@ const Product = ({ _id, img, name, brand, price, addToCart }) => {
   );
 };
 
-export default Product;
+export default ProductsListItem;

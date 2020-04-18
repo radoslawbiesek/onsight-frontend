@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Nav from './Nav/Nav';
-import Newsletter from '../Newsletter/Newsletter';
+import Newsletter from './Newsletter/Newsletter';
 import Footer from './Footer/Footer';
 
 const Layout = ({ children }) => {

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import ActiveFilters from '../Products/ActiveFilters/ActiveFilters';
+import ActiveFilters from './ActiveFilters/ActiveFilters';
 import SidebarSection from './SideBarSection/SidebarSection';
-import Filter from '../Products/Filter/Filter';
-import FilterColor from '../Products/Filter/FilterColor';
-import FilterPrice from '../Products/Filter/FilterPrice';
+import Filter from './Filter/Filter';
+import FilterColor from './Filter/FilterColor';
+import FilterPrice from './Filter/FilterPrice';
 import Tags from './Tags/Tags';
 
 import './Sidebar.css';

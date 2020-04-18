@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
 
-import Cart from '../components/Cart/Cart';
-import ProductPage from '../components/ProductPage/ProductPage';
-import Home from '../components/Home';
+import Cart from '../components/cart/Cart';
+import ProductPage from '../components/product-page/ProductPage';
+import Home from '../components/layout/Home';
 
 const routes = (
   <Switch>

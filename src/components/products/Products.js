@@ -4,9 +4,9 @@ import { useFetch, useCart } from '../../hooks';
 
 import { PRODUCTS_PER_PAGE, SORTING_OPTIONS } from '../../constants';
 
-import Product from './Product/Product';
 import SortBySelect from './SortBySelect/SortBySelect';
 import ShowingInfo from './ShowingInfo/ShowingInfo';
+import ProductsList from './ProductsList/ProductsList';
 import PageLinks from './PageLinks/PageLinks';
 import Backdrop from '../UI/Backdrop/Backdrop';
 
@@ -47,14 +47,7 @@ const Products = () => {
       <div className='products-grid'>
         {loading && <Backdrop />}
         {error && <p>Something went wrong. Try again.</p>}
-        {products &&
-          products.map((product) => (
-            <Product
-              key={product._id}
-              addToCart={() => addToCart(product)}
-              {...product}
-            />
-          ))}
+        {products && <ProductsList products={products} addToCart={addToCart}/>}
       </div>
       {count && (
         <PageLinks
