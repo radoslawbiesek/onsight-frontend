@@ -1,14 +1,5 @@
 import { useReducer, useCallback } from 'react';
 
-const initialState = {
-  color: [],
-  size: [],
-  category: [],
-  brand: [],
-  priceMin: 0,
-  priceMax: Infinity,
-};
-
 const actionTypes = {
   ADD_FILTER: 'ADD_FILTER',
   RESET_FILTERS: 'RESET_FILTERS',
@@ -20,6 +11,14 @@ function filterReducer(state, action) {
   switch (action.type) {
     case actionTypes.ADD_FILTER: {
       const { filterType, filterValue } = action.payload;
+
+      if (!state[filterType]) {
+        return {
+          ...state,
+          [filterType]: [filterValue],
+        };
+      }
+
       if (state[filterType].includes(filterValue)) {
         return { ...state };
       }
@@ -35,6 +34,11 @@ function filterReducer(state, action) {
       const filteredFilters = state[filterType].filter(
         (item) => item !== filterValue
       );
+
+      if (!filteredFilters.length) {
+        const { [filterType]: deleted, ...filteredState } = state;
+        return filteredState;
+      }
 
       return {
         ...state,
@@ -52,9 +56,7 @@ function filterReducer(state, action) {
       };
 
     case actionTypes.RESET_FILTERS: {
-      return {
-        ...initialState,
-      };
+      return {};
     }
 
     default:
@@ -63,7 +65,7 @@ function filterReducer(state, action) {
 }
 
 export const useFilters = () => {
-  const [state, dispatch] = useReducer(filterReducer, initialState);
+  const [state, dispatch] = useReducer(filterReducer, {});
 
   const addFilter = useCallback(
     (filterType, filterValue) => {

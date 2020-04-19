@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 
-import { useFetch, useCart } from '../../hooks';
+import { useFetch, useCart, useFilters } from '../../hooks';
 
 import { PRODUCTS_PER_PAGE, SORTING_OPTIONS } from '../../constants';
 
@@ -19,15 +19,22 @@ const Products = () => {
 
   const { addToCart } = useCart();
 
-  const getParamsString = useCallback((page, sort) => {
+  const {
+    state: filters,
+    addFilter,
+    removeFilter,
+    resetFilters,
+  } = useFilters();
+
+  const getParamsString = (page, sort, filters) => {
     const offset = (page - 1) * PRODUCTS_PER_PAGE;
     const limit = PRODUCTS_PER_PAGE;
-    const params = new URLSearchParams({ limit, offset, sort });
+    const params = new URLSearchParams({ limit, offset, sort, ...filters });
     return params.toString();
-  }, []);
+  };
 
   const [{ products, count }, loading, error] = useFetch(
-    `/products?${getParamsString(page, sort)}`,
+    `/products?${getParamsString(page, sort, filters)}`,
     {
       result: { products: [], count: null },
     }
@@ -35,8 +42,14 @@ const Products = () => {
 
   return (
     <div className='row'>
+      {loading && <Backdrop />}
+      {error && <p>Something went wrong. Try again.</p>}
       <aside className='col col-md-3'>
-        <FilterBar />
+        <FilterBar
+          addFilter={addFilter}
+          removeFilter={removeFilter}
+          resetFilters={resetFilters}
+        />
       </aside>
       <main className='col col-md-9'>
         <div className='products__top-nav'>
@@ -50,8 +63,6 @@ const Products = () => {
           )}
         </div>
         <div className='products-grid'>
-          {loading && <Backdrop />}
-          {error && <p>Something went wrong. Try again.</p>}
           {products && (
             <ProductsList products={products} addToCart={addToCart} />
           )}
